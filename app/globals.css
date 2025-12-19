@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-silver-300 via-accent-light to-silver-400;
+  }
+  
+  .text-gradient-silver {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-silver-200 via-silver-400 to-silver-200;
+  }
+  
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  .shimmer-effect {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+}
+
