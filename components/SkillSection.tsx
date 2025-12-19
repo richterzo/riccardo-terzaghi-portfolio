@@ -159,6 +159,11 @@ export default function SkillSection({
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          onError={(e) => {
+                            // Fallback se l'immagine non carica
+                            e.currentTarget.style.display = 'none'
+                          }}
                         />
                         <motion.div
                           className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/50 to-transparent"

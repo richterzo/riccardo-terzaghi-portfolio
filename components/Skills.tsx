@@ -56,6 +56,13 @@ const cloudProjects = [
 
 const droneProjects = [
   {
+    title: 'Riprese Aeree Monumenti',
+    description: 'Riprese aeree professionali di monumenti storici. Fotografia aerea ad alta risoluzione del Santuario di San Luca a Bologna, con post-produzione e color grading professionale.',
+    technologies: ['DJI Mavic', 'Fotografia Aerea', 'Post-Produzione', 'Color Grading', '4K'],
+    year: '2024',
+    image: '/photos/drone-sanluca.jpg',
+  },
+  {
     title: 'Mappatura 3D Territorio',
     description: 'Progetto di fotogrammetria per mappatura tridimensionale di area industriale. Elaborazione dati con software specializzati e generazione modelli 3D ad alta precisione.',
     technologies: ['DJI Phantom', 'Fotogrammetria', 'Agisoft Metashape', 'GIS', '3D Modeling'],
@@ -69,36 +76,29 @@ const droneProjects = [
     year: '2024',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
   },
-  {
-    title: 'Ispezione Infrastrutture',
-    description: 'Servizio di ispezione con droni per ponti e strutture industriali. Report tecnici dettagliati con analisi termografiche e documentazione fotografica.',
-    technologies: ['DJI Enterprise', 'Termografia', 'Analisi Strutturale', 'Report Tecnici'],
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&q=80',
-  },
 ]
 
 const modelingProjects = [
   {
-    title: 'Modello 3D Architettonico',
-    description: 'Modellazione completa di edificio residenziale con rendering fotorealistico. Texturing avanzato, lighting design e visualizzazione VR-ready.',
-    technologies: ['Blender', 'Cycles Render', 'Substance Painter', 'Post-Production', 'VR Ready'],
+    title: 'Giochi per Bambini Personalizzati',
+    description: 'Creazione di giochi 3D unici partendo dai disegni dei bambini. Modellazione, stampa 3D e finitura di giocattoli personalizzati che trasformano l\'immaginazione in realtà.',
+    technologies: ['Blender', '3D Modeling', '3D Printing', 'Design Personalizzato', 'Post-Processing'],
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800',
+    image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80',
   },
   {
-    title: 'Prodotto Industriale 3D',
-    description: 'Design e modellazione 3D per prototipazione rapida. Ottimizzazione mesh per stampa 3D, visualizzazione VR e rendering per cataloghi prodotti.',
-    technologies: ['Blender', '3D Printing', 'VR Ready', 'CAD Design', 'Product Visualization'],
+    title: 'Cornice Specchio Infinito',
+    description: 'Design e realizzazione di cornice specchio infinito custom made. Progettazione 3D, modellazione precisa e assemblaggio con LED e specchi per effetto ottico infinito.',
+    technologies: ['Blender', '3D Design', 'LED Integration', 'Custom Manufacturing', 'Optical Design'],
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
   },
   {
-    title: 'Animazione 3D Prodotto',
-    description: 'Animazione promozionale per lancio prodotto. Rigging completo, animazione fluida e compositing con effetti visivi professionali.',
-    technologies: ['Blender', 'Animation', 'Rigging', 'Compositing', 'VFX'],
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800',
+    title: 'Maniglie e Utensili Custom Made',
+    description: 'Design e produzione di maniglie e utensili personalizzati per case. Modellazione 3D, prototipazione e stampa 3D di accessori unici su misura per interni ed esterni.',
+    technologies: ['Blender', 'CAD Design', '3D Printing', 'Custom Manufacturing', 'Product Design'],
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80',
   },
 ]
 
