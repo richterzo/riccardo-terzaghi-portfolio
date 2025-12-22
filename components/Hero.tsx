@@ -144,7 +144,7 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="flex justify-center flex-wrap gap-4 sm:gap-6 mb-12 md:mb-16 px-4"
+            className="flex justify-center flex-wrap gap-4 sm:gap-6 mb-8 md:mb-10 px-4"
           >
             {[
               { icon: Linkedin, href: 'https://www.linkedin.com/in/riccardoterzaghi', label: 'LinkedIn' },
@@ -175,6 +175,13 @@ export default function Hero() {
               )
             })}
           </motion.div>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg md:text-xl text-silver-400 font-light italic mb-12 md:mb-16 px-4"
+          >
+            Oggi più forte di ieri
+          </motion.p>
 
           <motion.div
             variants={itemVariants}
