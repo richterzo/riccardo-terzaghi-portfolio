@@ -123,11 +123,22 @@ export default function Skills() {
           { name: 'AWS Cloud Architecture', level: 95 },
           { name: 'Next.js & React', level: 95 },
           { name: 'TypeScript', level: 92 },
+          { name: 'JavaScript', level: 95 },
           { name: 'Node.js & Backend', level: 90 },
+          { name: 'Java', level: 85 },
+          { name: 'Python', level: 85 },
+          { name: 'Angular', level: 88 },
           { name: 'E-Commerce Systems', level: 88 },
           { name: 'Serverless Architecture', level: 88 },
           { name: 'Kubernetes & Docker', level: 85 },
+          { name: 'PostgreSQL', level: 88 },
+          { name: 'MongoDB', level: 85 },
+          { name: 'Oracle SQL', level: 80 },
+          { name: 'Redis', level: 80 },
+          { name: 'Git & Version Control', level: 95 },
           { name: 'CI/CD & DevOps', level: 85 },
+          { name: 'Terraform', level: 80 },
+          { name: 'Pentaho', level: 75 },
         ]}
         projects={cloudProjects}
         gradientFrom="from-blue-600"

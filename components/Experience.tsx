@@ -56,6 +56,16 @@ const experiences = [
     skills: ['Amazon Web Services (AWS)', 'Technical Training'],
     year: '2023',
   },
+  {
+    title: 'Software Engineer',
+    company: 'Capgemini',
+    location: 'Milano, Lombardia, Italia',
+    period: 'gen 2019 - gen 2021',
+    type: 'A tempo pieno',
+    description: 'Full-stack development for a TELCO client, creating a comprehensive dashboard to monitor wired and wireless coverage in Italy.',
+    skills: ['Angular', 'Oracle SQL Developer', 'Java', 'Pentaho'],
+    year: '2019',
+  },
 ]
 
 export default function Experience() {
