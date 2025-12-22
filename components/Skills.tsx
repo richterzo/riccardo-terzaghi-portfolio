@@ -64,25 +64,25 @@ const cloudProjects = [
 
 const droneProjects = [
   {
-    title: 'Riprese Aeree Monumenti',
-    description: 'Riprese aeree professionali di monumenti storici. Fotografia aerea ad alta risoluzione del Santuario di San Luca a Bologna, con post-produzione e color grading professionale.',
-    technologies: ['DJI Mavic', 'Fotografia Aerea', 'Post-Produzione', 'Color Grading', '4K'],
+    title: 'Riprese Aeree e Mappatura 3D',
+    description: 'Riprese aeree professionali di monumenti storici e mappatura 3D del territorio. Fotografia aerea ad alta risoluzione, fotogrammetria e generazione modelli 3D con post-produzione professionale.',
+    technologies: ['DJI Mavic', 'Fotogrammetria', 'Mappatura 3D', 'Post-Produzione', 'Agisoft Metashape', '4K'],
     year: '2024',
     image: '/photos/drone-sanluca.jpg',
   },
   {
-    title: 'Mappatura 3D Territorio',
-    description: 'Progetto di fotogrammetria per mappatura tridimensionale di area industriale. Elaborazione dati con software specializzati e generazione modelli 3D ad alta precisione.',
-    technologies: ['DJI Phantom', 'Fotogrammetria', 'Agisoft Metashape', 'GIS', '3D Modeling'],
+    title: 'FPV Drone',
+    description: 'Pilotaggio FPV (First Person View) per riprese dinamiche e acrobatiche. Voli ad alta velocità, manovre complesse e riprese immersive per video sportivi e commerciali.',
+    technologies: ['FPV Drone', 'Racing', 'Acrobatic Flying', 'High-Speed', 'Immersive Video'],
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1473968512647-3f4478c51442?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Riprese Aeree Commerciali',
     description: 'Produzione video aereo per campagne pubblicitarie e documentari. Post-produzione professionale con color grading avanzato e stabilizzazione 4K.',
     technologies: ['DJI Mavic', 'Premiere Pro', 'Color Grading', '4K Video', 'Stabilization'],
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop&q=80',
   },
 ]
 
