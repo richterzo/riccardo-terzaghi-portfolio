@@ -1,16 +1,16 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef, useMemo } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useRef, useMemo, useState } from 'react'
 import {
   Cloud,
   Camera,
   Box,
   ExternalLink,
   ArrowRight,
-  ChevronRight,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react'
-import Link from 'next/link'
 import Image from 'next/image'
 
 interface Project {
@@ -47,6 +47,7 @@ export default function SkillSection({
 }: SkillSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [isExpanded, setIsExpanded] = useState(false)
 
   // Memoize per performance con molti progetti
   const sortedProjects = useMemo(
@@ -60,8 +61,8 @@ export default function SkillSection({
     [projects]
   )
 
-  // Mostra solo i primi 3 progetti come highlight
-  const highlightedProjects = sortedProjects.slice(0, 3)
+  // Mostra solo i primi 3 progetti come highlight, o tutti se espanso
+  const displayedProjects = isExpanded ? sortedProjects : sortedProjects.slice(0, 3)
   const remainingCount = sortedProjects.length - 3
 
   return (
@@ -116,14 +117,14 @@ export default function SkillSection({
           </p>
         </motion.div>
 
-        {/* Highlight Projects - Solo 3 */}
+        {/* Projects Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 md:mb-10">
-            {highlightedProjects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <ProjectCard
                 key={`${project.title}-${index}`}
                 project={project}
@@ -136,7 +137,34 @@ export default function SkillSection({
             ))}
           </div>
 
-          {/* View All Projects Button */}
+          {/* Expandable Projects */}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 md:mb-10">
+                  {sortedProjects.slice(3).map((project, index) => (
+                    <ProjectCard
+                      key={`${project.title}-${index + 3}`}
+                      project={project}
+                      index={index + 3}
+                      isInView={true}
+                      gradientFrom={gradientFrom}
+                      gradientTo={gradientTo}
+                      Icon={Icon}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Toggle Expand Button */}
           {remainingCount > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -144,19 +172,32 @@ export default function SkillSection({
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center"
             >
-              <Link
-                href={`#${id}-portfolio`}
+              <motion.button
+                onClick={() => setIsExpanded(!isExpanded)}
                 className="inline-flex items-center space-x-2 px-6 py-3 glass-effect border border-white/10 hover:border-silver-400/40 rounded-xl text-silver-300 hover:text-silver-200 transition-all duration-300 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <span className="font-medium">Vedi tutti i progetti</span>
+                <span className="font-medium">
+                  {isExpanded ? 'Mostra meno' : 'Vedi tutti i progetti'}
+                </span>
                 <span className="text-xs text-silver-400 group-hover:text-silver-300">
                   ({sortedProjects.length} totali)
                 </span>
-                <ChevronRight
-                  size={18}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </Link>
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isExpanded ? (
+                    <ChevronUp size={18} />
+                  ) : (
+                    <ChevronDown
+                      size={18}
+                      className="group-hover:translate-y-1 transition-transform"
+                    />
+                  )}
+                </motion.div>
+              </motion.button>
             </motion.div>
           )}
         </motion.div>
