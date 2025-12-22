@@ -2,7 +2,14 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useMemo } from 'react'
-import { Cloud, Camera, Box, ExternalLink, ArrowRight, ChevronRight } from 'lucide-react'
+import {
+  Cloud,
+  Camera,
+  Box,
+  ExternalLink,
+  ArrowRight,
+  ChevronRight,
+} from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -43,12 +50,13 @@ export default function SkillSection({
 
   // Memoize per performance con molti progetti
   const sortedProjects = useMemo(
-    () => [...projects].sort((a, b) => {
-      // Ordina per anno (più recenti prima)
-      const yearA = parseInt(a.year.split('-')[0]) || 0
-      const yearB = parseInt(b.year.split('-')[0]) || 0
-      return yearB - yearA
-    }),
+    () =>
+      [...projects].sort((a, b) => {
+        // Ordina per anno (più recenti prima)
+        const yearA = parseInt(a.year.split('-')[0]) || 0
+        const yearB = parseInt(b.year.split('-')[0]) || 0
+        return yearB - yearA
+      }),
     [projects]
   )
 
@@ -234,7 +242,10 @@ function ProjectCard({
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <ExternalLink size={14} className="sm:w-4 sm:h-4 text-silver-300" />
+              <ExternalLink
+                size={14}
+                className="sm:w-4 sm:h-4 text-silver-300"
+              />
             </motion.a>
           )}
 
