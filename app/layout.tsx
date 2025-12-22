@@ -6,6 +6,13 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Riccardo Terzaghi - Cloud Engineer & Full Stack Developer',
   description: 'Cloud Architect with experience in web architectures, cloud services, both frontend and backend languages, responsive frameworks, databases and best code practices.',
+  keywords: ['Cloud Engineer', 'Full Stack Developer', 'AWS', 'Next.js', 'React', 'TypeScript', 'Portfolio'],
+  authors: [{ name: 'Riccardo Terzaghi' }],
+  openGraph: {
+    title: 'Riccardo Terzaghi - Cloud Engineer & Full Stack Developer',
+    description: 'Cloud Architect with experience in web architectures, cloud services, both frontend and backend languages, responsive frameworks, databases and best code practices.',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

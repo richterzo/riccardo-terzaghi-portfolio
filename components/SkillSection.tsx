@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useMemo } from 'react'
 import { Cloud, Camera, Box, ExternalLink, ArrowRight, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Project {
   title: string
@@ -195,19 +196,14 @@ function ProjectCard({
         >
           {project.image ? (
             <>
-              <motion.img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
                 loading="lazy"
-                decoding="async"
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.08 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                onError={(e) => {
-                  const target = e.currentTarget as HTMLImageElement
-                  target.style.display = 'none'
-                }}
+                quality={85}
               />
               <motion.div
                 className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/60 to-transparent"
