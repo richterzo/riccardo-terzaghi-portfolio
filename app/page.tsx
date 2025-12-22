@@ -1,4 +1,4 @@
-import Hero from '@/components/Hero'
+import GameHero from '@/components/GameHero'
 import About from '@/components/About'
 import Experience from '@/components/Experience'
 import Skills from '@/components/Skills'
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-950">
       <Navigation />
-      <Hero />
+      <GameHero />
       <About />
       <Experience />
       <Skills />
