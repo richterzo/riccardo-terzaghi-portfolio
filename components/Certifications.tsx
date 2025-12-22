@@ -30,7 +30,7 @@ export default function Certifications() {
     <section
       id="certifications"
       ref={ref}
-      className="py-32 relative bg-gradient-to-b from-gray-950 to-gray-900"
+      className="py-20 md:py-24 relative bg-gradient-to-b from-gray-950 to-gray-900"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
@@ -46,12 +46,12 @@ export default function Certifications() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
             <span className="text-gray-100">Certifications</span>
           </h2>
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto" />
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">

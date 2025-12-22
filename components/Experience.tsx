@@ -10,7 +10,7 @@ const experiences = [
     title: 'Cloud Engineer & Co-Founder',
     company: 'Wesync',
     location: 'Bologna, Emilia Romagna, Italia',
-    period: 'feb 2024 - Presente · 1 anno 11 mesi',
+    period: 'feb 2024 - Presente',
     type: 'Ibrida',
     description: 'Co-founder di Wesync, azienda specializzata in soluzioni cloud e sviluppo software. Progettazione di architetture scalabili, sviluppo di applicazioni AI-powered e gestione tecnica dell\'azienda.',
     skills: ['Cloud computing', 'Sviluppo di applicazioni cloud', 'Co-Founder', 'Business Strategy'],
@@ -19,7 +19,7 @@ const experiences = [
     title: 'Full Stack Developer',
     company: 'compri',
     location: 'Milano, Lombardia, Italia',
-    period: 'ott 2024 - mar 2025 · 6 mesi',
+    period: 'ott 2024 - mar 2025',
     type: 'Da remoto',
     description: 'Developing and delivering features, including data visualization components and an AI-powered chatbot, ensuring scalability and performance.',
     skills: ['TypeScript', 'Next.js', 'React', 'Node.js', 'AI/ML'],
@@ -28,7 +28,7 @@ const experiences = [
     title: 'Cloud Engineer',
     company: 'Sky',
     location: 'Milano, Lombardia, Italia',
-    period: 'lug 2021 - ott 2024 · 3 anni 4 mesi',
+    period: 'lug 2021 - ott 2024',
     type: 'A contratto',
     description: 'Joined an amazing team at a cutting-edge company, specializing in AWS development. Contributed to a serverless architecture, container orchestration and event-driven design.',
     skills: ['Amazon Web Services (AWS)', 'AWS Lambda', 'Serverless', 'Kubernetes', 'Docker'],
@@ -37,7 +37,7 @@ const experiences = [
     title: 'Frontend Developer',
     company: 'Intesi Group S.p.A.',
     location: 'Milano, Lombardia, Italia',
-    period: 'giu 2021 - ott 2024 · 3 anni 5 mesi',
+    period: 'giu 2021 - ott 2024',
     type: 'Freelance',
     description: 'Developed frontend applications, UI/UX design, and dashboard functionalities.',
     skills: ['Angular', 'React.js', 'TypeScript', 'UI/UX'],
@@ -46,7 +46,7 @@ const experiences = [
     title: 'Technical Instructor',
     company: 'Fondazione Et Labora',
     location: 'Milano, Lombardia, Italia',
-    period: 'nov 2023 - feb 2024 · 4 mesi',
+    period: 'nov 2023 - feb 2024',
     type: 'In sede',
     description: 'Teaching AWS re/Start, a cohort-based workforce development training program that prepares individuals for careers in the cloud and connects them to potential employers.',
     skills: ['Amazon Web Services (AWS)', 'Technical Training'],
@@ -61,101 +61,105 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="py-32 relative bg-gradient-to-b from-gray-900 to-gray-950"
+      className="py-20 md:py-24 relative bg-gradient-to-b from-gray-900 to-gray-950 overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
                            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-        }} />
+            backgroundSize: '40px 40px',
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
             <span className="text-gray-100">Experience</span>
           </h2>
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto" />
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto" />
         </motion.div>
 
+        {/* Horizontal Timeline */}
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-silver-500/30 via-silver-400/50 to-silver-500/30" />
+          {/* Timeline line - Horizontal */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-silver-400/40 to-transparent transform -translate-y-1/2" />
 
-          <div className="space-y-16">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Timeline dot */}
+          {/* Timeline Container - Scrollable Horizontal */}
+          <div className="overflow-x-auto pb-8 md:pb-12 scrollbar-hide">
+            <div className="flex md:flex-row flex-col gap-6 md:gap-8 min-w-max md:min-w-0">
+              {experiences.map((exp, index) => (
                 <motion.div
-                  className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-gradient-to-br from-silver-400 to-silver-600 rounded-full border-4 border-gray-950 shadow-lg z-10"
-                  whileHover={{ scale: 1.3 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                />
-
-                {/* Content */}
-                <div
-                  className={`w-full md:w-1/2 ${
-                    index % 2 === 0 ? 'md:pr-12 pl-16' : 'md:pl-12 pr-16 md:ml-auto'
-                  }`}
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="relative flex-shrink-0 w-full md:w-80"
                 >
+                  {/* Timeline dot - Horizontal */}
                   <motion.div
-                    className="glass-effect p-8 rounded-2xl border border-white/10 hover:border-silver-400/30 transition-all duration-500"
-                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="hidden md:block absolute top-1/2 -left-4 w-3 h-3 bg-gradient-to-br from-silver-400 to-silver-600 rounded-full border-2 border-gray-950 shadow-lg z-10 transform -translate-y-1/2"
+                    whileHover={{ scale: 1.5 }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                  />
+
+                  {/* Content Card */}
+                  <motion.div
+                    className="glass-effect p-5 md:p-6 rounded-xl border border-white/10 hover:border-silver-400/30 transition-all duration-300 h-full"
+                    whileHover={{ y: -4, scale: 1.02 }}
                   >
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-100 mb-2">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1">
+                        <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-1">
                           {exp.title}
                         </h3>
-                        <p className="text-silver-300 font-semibold mb-3 text-lg">
+                        <p className="text-silver-300 font-semibold mb-2 text-sm md:text-base">
                           {exp.company}
                         </p>
                       </div>
-                      <Briefcase className="text-silver-400/50" size={28} />
+                      <Briefcase className="text-silver-400/40 flex-shrink-0 ml-2" size={20} />
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-silver-400 mb-6">
-                      <div className="flex items-center space-x-2">
-                        <Calendar size={16} />
+                    <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-silver-400 mb-3">
+                      <div className="flex items-center space-x-1.5">
+                        <Calendar size={14} />
                         <span className="font-light">{exp.period}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <MapPin size={16} />
-                        <span className="font-light">{exp.location}</span>
+                      <div className="flex items-center space-x-1.5">
+                        <MapPin size={14} />
+                        <span className="font-light line-clamp-1">{exp.location}</span>
                       </div>
-                      <span className="px-3 py-1 glass-effect text-silver-300 rounded-full text-xs font-medium border border-white/10">
-                        {exp.type}
-                      </span>
                     </div>
 
-                    <p className="text-silver-300 mb-6 leading-relaxed font-light">
+                    <span className="inline-block px-2 py-0.5 glass-effect text-silver-300 rounded-full text-xs font-medium border border-white/10 mb-3">
+                      {exp.type}
+                    </span>
+
+                    <p className="text-silver-300 text-sm mb-4 leading-relaxed font-light line-clamp-3">
                       {exp.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {exp.skills.map((skill, skillIndex) => (
                         <motion.span
                           key={skillIndex}
-                          className="px-4 py-2 glass-effect text-silver-300 rounded-full text-sm font-medium border border-white/10"
+                          className="px-2.5 py-1 glass-effect text-silver-300 rounded-full text-xs font-medium border border-white/10"
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={isInView ? { opacity: 1, scale: 1 } : {}}
                           transition={{
-                            delay: index * 0.1 + skillIndex * 0.05,
+                            delay: index * 0.1 + skillIndex * 0.04,
                             ease: [0.22, 1, 0.36, 1],
                           }}
                           whileHover={{ scale: 1.1, borderColor: 'rgba(192, 192, 192, 0.3)' }}
@@ -165,12 +169,22 @@ export default function Experience() {
                       ))}
                     </div>
                   </motion.div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   )
 }

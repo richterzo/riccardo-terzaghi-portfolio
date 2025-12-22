@@ -1,23 +1,23 @@
 # Portfolio Riccardo Terzaghi
 
-Portfolio personale moderno e interattivo costruito con Next.js, TypeScript, Tailwind CSS e Framer Motion.
+Portfolio professionale moderno e interattivo costruito con Next.js 15, TypeScript, Tailwind CSS e Framer Motion.
 
 ## 🚀 Caratteristiche
 
-- **Design Moderno**: Interfaccia pulita e professionale con microanimazioni
+- **Design Moderno**: Interfaccia elegante con palette grigio/argento
+- **Font Premium**: Geist by Vercel per tipografia professionale
+- **Animazioni Fluide**: Microanimazioni con Framer Motion
+- **Timeline Orizzontale**: Esperienze lavorative in layout orizzontale
 - **Responsive**: Ottimizzato per tutti i dispositivi
-- **Animazioni**: Microanimazioni fluide con Framer Motion
-- **Tre Aree di Competenza**:
-  - ☁️ Architettura Cloud & Full Stack
-  - 🚁 Pilota di Droni
-  - 🎨 Modellazione 3D
+- **Performance**: Ottimizzato per velocità e SEO
 
 ## 🛠️ Tecnologie
 
-- **Next.js 14** - Framework React
+- **Next.js 15** - Framework React con App Router
 - **TypeScript** - Tipizzazione statica
 - **Tailwind CSS** - Styling utility-first
 - **Framer Motion** - Animazioni fluide
+- **Geist Font** - Font premium by Vercel
 - **Lucide React** - Icone moderne
 
 ## 📦 Installazione
@@ -42,20 +42,21 @@ Apri [http://localhost:3000](http://localhost:3000) nel browser per vedere il ri
 
 ```
 ├── app/
-│   ├── layout.tsx      # Layout principale
+│   ├── layout.tsx      # Layout principale con Geist font
 │   ├── page.tsx        # Pagina home
 │   └── globals.css     # Stili globali
 ├── components/
 │   ├── Navigation.tsx  # Barra di navigazione
 │   ├── Hero.tsx        # Sezione hero
 │   ├── About.tsx       # Sezione about
-│   ├── Experience.tsx  # Esperienze lavorative
+│   ├── Experience.tsx  # Timeline orizzontale esperienze
 │   ├── Skills.tsx      # Competenze principali
-│   ├── Projects.tsx    # Progetti
+│   ├── SkillSection.tsx # Sezione skill con portfolio
 │   ├── Certifications.tsx # Certificazioni
 │   ├── Contact.tsx     # Contatti
 │   └── Footer.tsx      # Footer
-└── public/             # File statici
+└── public/
+    └── photos/         # Immagini progetti
 ```
 
 ## 🎨 Personalizzazione
@@ -63,10 +64,14 @@ Apri [http://localhost:3000](http://localhost:3000) nel browser per vedere il ri
 Modifica i contenuti nei componenti per personalizzare il portfolio:
 - Informazioni personali in `Hero.tsx` e `About.tsx`
 - Esperienze in `Experience.tsx`
-- Competenze in `Skills.tsx`
-- Progetti in `Projects.tsx`
+- Progetti in `Skills.tsx` e `SkillSection.tsx`
+- Certificazioni in `Certifications.tsx`
 
 ## 📝 Licenza
 
 Questo progetto è privato e personale.
 
+## 🔗 Link
+
+- **Repository**: [GitHub](https://github.com/richterzo/riccardo-terzaghi-portfolio)
+- **Wesync**: [wesync.dev](https://wesync.dev)

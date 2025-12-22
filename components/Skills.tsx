@@ -10,7 +10,7 @@ const cloudProjects = [
     technologies: ['AWS', 'Cloud Architecture', 'Next.js', 'TypeScript', 'AI/ML', 'Microservices'],
     link: 'https://wesync.dev/',
     year: '2024 - Presente',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'GLM Space - E-Commerce',
@@ -18,7 +18,7 @@ const cloudProjects = [
     technologies: ['Next.js', 'E-Commerce', 'Logistics System', 'Payment Gateway', 'Inventory Management'],
     link: 'https://glmspace.com/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Bilim Network - Forum',
@@ -26,7 +26,7 @@ const cloudProjects = [
     technologies: ['Next.js', 'Forum System', 'Community Platform', 'Content Management', 'Membership'],
     link: 'https://bilim.network/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Calori & Scafuri',
@@ -34,7 +34,7 @@ const cloudProjects = [
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
     link: 'https://www.caloriscafuri.it/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Futuro Naturale',
@@ -42,7 +42,7 @@ const cloudProjects = [
     technologies: ['Next.js', 'React', 'Booking System', 'Gallery', 'Responsive Design'],
     link: 'https://www.futuronaturale.it/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800',
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Otherwise Athletics',
@@ -50,7 +50,7 @@ const cloudProjects = [
     technologies: ['Next.js', 'React', 'Framer Motion', 'Landing Page', 'Animation'],
     link: 'https://otherwise-landing.vercel.app/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop&q=80',
   },
 ]
 
