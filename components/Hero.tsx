@@ -122,7 +122,7 @@ export default function Hero() {
 
           <motion.h1
             variants={itemVariants}
-            className="text-6xl md:text-8xl font-bold mb-6 tracking-tight"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 md:mb-6 tracking-tight px-4"
           >
             <span className="text-gray-100">Riccardo </span>
             <span className="text-gradient-silver">Terzaghi</span>
@@ -130,21 +130,21 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-silver-300 mb-4 font-light"
+            className="text-lg sm:text-xl md:text-2xl text-silver-300 mb-3 md:mb-4 font-light px-4"
           >
-            Cloud Engineer & Co-Founder @ <a href="https://wesync.dev/" target="_blank" rel="noopener noreferrer" className="text-silver-200 hover:text-silver-100 underline">Wesync</a>
+            Cloud Engineer & Co-Founder @ <a href="https://wesync.dev/" target="_blank" rel="noopener noreferrer" className="text-silver-200 hover:text-silver-100 underline transition-colors">Wesync</a>
           </motion.p>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-silver-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-silver-400 max-w-3xl mx-auto mb-10 md:mb-12 font-light leading-relaxed px-4"
           >
             Architettura Cloud, Full Stack Development, Pilotaggio Droni & Modellazione 3D
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="flex justify-center space-x-6 mb-16"
+            className="flex justify-center flex-wrap gap-4 sm:gap-6 mb-12 md:mb-16 px-4"
           >
             {[
               { icon: Linkedin, href: 'https://www.linkedin.com/in/riccardoterzaghi', label: 'LinkedIn' },

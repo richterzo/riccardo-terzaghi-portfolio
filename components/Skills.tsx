@@ -13,6 +13,14 @@ const cloudProjects = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
   },
   {
+    title: 'Ubify - Cassa Fiscale All-in-One',
+    description: 'Piattaforma completa per gestione fiscale e di cassa. Sistema all-in-one con registratore telematico conforme alle normative fiscali 2025, gestione incassi, scontrini e fatture automatici.',
+    technologies: ['Next.js', 'Fiscal Compliance', 'Payment Systems', 'Hardware Integration', 'TypeScript'],
+    link: 'https://ubify.it/',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
+  },
+  {
     title: 'GLM Space - E-Commerce',
     description: 'Piattaforma e-commerce completa con sistema logistico integrato. Gestione inventario, pagamenti, spedizioni e dashboard analytics per prodotti beauty professionali.',
     technologies: ['Next.js', 'E-Commerce', 'Logistics System', 'Payment Gateway', 'Inventory Management'],
