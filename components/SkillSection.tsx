@@ -62,7 +62,9 @@ export default function SkillSection({
   )
 
   // Mostra solo i primi 3 progetti come highlight, o tutti se espanso
-  const displayedProjects = isExpanded ? sortedProjects : sortedProjects.slice(0, 3)
+  const displayedProjects = isExpanded
+    ? sortedProjects
+    : sortedProjects.slice(0, 3)
   const remainingCount = sortedProjects.length - 3
 
   return (
@@ -108,11 +110,11 @@ export default function SkillSection({
             </div>
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-3 tracking-tight px-4">
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 md:mb-3 tracking-tight px-4">
             <span className="text-gray-100">{title}</span>
           </h2>
           <div className="w-20 md:w-24 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto mb-3 md:mb-4" />
-          <p className="text-base sm:text-lg md:text-xl text-silver-300 font-light max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-sm xs:text-base sm:text-lg md:text-xl text-silver-300 font-light max-w-2xl mx-auto leading-relaxed px-4">
             {description}
           </p>
         </motion.div>
@@ -172,32 +174,32 @@ export default function SkillSection({
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center"
             >
-              <motion.button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="inline-flex items-center space-x-2 px-6 py-3 glass-effect border border-white/10 hover:border-silver-400/40 rounded-xl text-silver-300 hover:text-silver-200 transition-all duration-300 group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="font-medium">
-                  {isExpanded ? 'Mostra meno' : 'Vedi tutti i progetti'}
-                </span>
-                <span className="text-xs text-silver-400 group-hover:text-silver-300">
-                  ({sortedProjects.length} totali)
-                </span>
-                <motion.div
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+                <motion.button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="inline-flex items-center space-x-2 px-4 xs:px-6 py-2.5 xs:py-3 glass-effect border border-white/10 hover:border-silver-400/40 rounded-xl text-silver-300 hover:text-silver-200 transition-all duration-300 group text-sm xs:text-base"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {isExpanded ? (
-                    <ChevronUp size={18} />
-                  ) : (
-                    <ChevronDown
-                      size={18}
-                      className="group-hover:translate-y-1 transition-transform"
-                    />
-                  )}
-                </motion.div>
-              </motion.button>
+                  <span className="font-medium">
+                    {isExpanded ? 'Mostra meno' : 'Vedi tutti i progetti'}
+                  </span>
+                  <span className="text-xs text-silver-400 group-hover:text-silver-300 hidden xs:inline">
+                    ({sortedProjects.length} totali)
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {isExpanded ? (
+                      <ChevronUp size={16} className="xs:w-[18px] xs:h-[18px]" />
+                    ) : (
+                      <ChevronDown
+                        size={16}
+                        className="xs:w-[18px] xs:h-[18px] group-hover:translate-y-1 transition-transform"
+                      />
+                    )}
+                  </motion.div>
+                </motion.button>
             </motion.div>
           )}
         </motion.div>
@@ -241,7 +243,7 @@ function ProjectCard({
       <div className="glass-effect rounded-xl overflow-hidden h-full hover:border-silver-400/40 transition-all duration-500 border border-white/10 relative flex flex-col">
         {/* Project Image - Responsive Height */}
         <div
-          className={`relative h-48 sm:h-52 md:h-56 lg:h-60 bg-gradient-to-br ${gradientFrom} ${gradientTo} bg-opacity-20 overflow-hidden flex-shrink-0`}
+          className={`relative h-44 xs:h-48 sm:h-52 md:h-56 lg:h-60 bg-gradient-to-br ${gradientFrom} ${gradientTo} bg-opacity-20 overflow-hidden flex-shrink-0`}
         >
           {project.image ? (
             <>
@@ -250,10 +252,12 @@ function ProjectCard({
                   src={project.image}
                   alt={project.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-110 transition-transform duration-600"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   loading="lazy"
-                  quality={85}
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
               <motion.div
@@ -301,16 +305,16 @@ function ProjectCard({
         {/* Content - Flex grow per altezza uniforme */}
         <div className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
           <div className="flex-1">
-            <motion.h4
-              className="text-base sm:text-lg md:text-xl font-bold text-gray-100 mb-1.5 group-hover:text-silver-200 transition-colors line-clamp-2"
-              whileHover={{ x: 2 }}
-            >
-              {project.title}
-            </motion.h4>
+                  <motion.h4
+                    className="text-sm xs:text-base sm:text-lg md:text-xl font-bold text-gray-100 mb-1.5 group-hover:text-silver-200 transition-colors line-clamp-2"
+                    whileHover={{ x: 2 }}
+                  >
+                    {project.title}
+                  </motion.h4>
 
-            <p className="text-silver-300 text-xs sm:text-sm mb-3 md:mb-4 leading-relaxed line-clamp-2 sm:line-clamp-3 font-light">
-              {project.description}
-            </p>
+                  <p className="text-silver-300 text-xs xs:text-sm mb-3 md:mb-4 leading-relaxed line-clamp-2 sm:line-clamp-3 font-light">
+                    {project.description}
+                  </p>
           </div>
 
           {/* Technologies - Responsive */}

@@ -15,8 +15,6 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
-  optimizeFonts: true,
-  swcMinify: true,
 }
 
 module.exports = nextConfig

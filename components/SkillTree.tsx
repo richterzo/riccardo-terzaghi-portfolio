@@ -53,11 +53,11 @@ const skillTree: Skill[] = [
 ]
 
 const categoryConfig = {
-  language: { icon: Code, color: 'from-blue-500 to-cyan-400', bg: 'bg-blue-500/20', border: 'border-blue-400/30' },
-  framework: { icon: Zap, color: 'from-purple-500 to-pink-400', bg: 'bg-purple-500/20', border: 'border-purple-400/30' },
-  database: { icon: Database, color: 'from-emerald-500 to-teal-400', bg: 'bg-emerald-500/20', border: 'border-emerald-400/30' },
-  tool: { icon: Wrench, color: 'from-orange-500 to-amber-400', bg: 'bg-orange-500/20', border: 'border-orange-400/30' },
-  cloud: { icon: Cloud, color: 'from-indigo-500 to-violet-400', bg: 'bg-indigo-500/20', border: 'border-indigo-400/30' },
+  language: { icon: Code, color: 'from-cloud-500 to-cloud-400', bg: 'bg-cloud-500/20', border: 'border-cloud-400/30' },
+  framework: { icon: Zap, color: 'from-cloud-600 to-cloud-400', bg: 'bg-cloud-600/20', border: 'border-cloud-400/30' },
+  database: { icon: Database, color: 'from-cloud-500 to-cloud-300', bg: 'bg-cloud-500/20', border: 'border-cloud-300/30' },
+  tool: { icon: Wrench, color: 'from-silver-500 to-silver-400', bg: 'bg-silver-500/20', border: 'border-silver-400/30' },
+  cloud: { icon: Cloud, color: 'from-cloud-600 to-cloud-400', bg: 'bg-cloud-600/20', border: 'border-cloud-400/30' },
 }
 
 export default function SkillTree() {

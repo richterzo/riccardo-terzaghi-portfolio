@@ -5,11 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   body {
     @apply bg-gray-950 text-gray-100;
     font-family: var(--font-geist-sans), system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -20,6 +23,16 @@
   
   code, pre {
     font-family: var(--font-geist-mono), monospace;
+  }
+  
+  /* Performance optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  img, video {
+    max-width: 100%;
+    height: auto;
   }
 }
 

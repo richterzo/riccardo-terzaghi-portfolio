@@ -151,8 +151,8 @@ export default function Skills() {
           { name: 'Pentaho', level: 75 },
         ]}
         projects={cloudProjects}
-        gradientFrom="from-blue-600"
-        gradientTo="to-cyan-500"
+        gradientFrom="from-cloud-600"
+        gradientTo="to-cloud-400"
       />
 
       <SkillTree />
@@ -174,8 +174,8 @@ export default function Skills() {
           { name: 'GIS & Cartografia', level: 70 },
         ]}
         projects={droneProjects}
-        gradientFrom="from-emerald-600"
-        gradientTo="to-teal-500"
+        gradientFrom="from-drone-600"
+        gradientTo="to-drone-400"
       />
 
       <SkillSection
@@ -195,8 +195,8 @@ export default function Skills() {
           { name: 'VR/AR Ready', level: 70 },
         ]}
         projects={modelingProjects}
-        gradientFrom="from-purple-600"
-        gradientTo="to-pink-500"
+        gradientFrom="from-printing-600"
+        gradientTo="to-printing-400"
       />
     </>
   )

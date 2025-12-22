@@ -97,7 +97,7 @@ export default function GameHero() {
               ctx.beginPath()
               ctx.moveTo(p.x, p.y)
               ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle = `rgba(192, 192, 192, ${0.1 * (1 - distance / 100)})`
+              ctx.strokeStyle = `rgba(192, 192, 192, ${0.08 * (1 - distance / 100)})`
               ctx.lineWidth = 0.5
               ctx.stroke()
             }
@@ -191,7 +191,7 @@ export default function GameHero() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cloud-500/10 rounded-full blur-3xl"
         style={{
           x: useTransform(x, (value) => value * -0.1),
           y: useTransform(y, (value) => value * -0.1),
@@ -398,7 +398,7 @@ export default function GameHero() {
               ease: 'easeInOut',
             }}
           >
-            <span className="mb-3 text-sm font-light tracking-wider uppercase">Esplora</span>
+            <span className="mb-2 sm:mb-3 text-xs sm:text-sm font-light tracking-wider uppercase">Esplora</span>
             <motion.div
               animate={{ y: [0, 5, 0] }}
               transition={{
@@ -407,7 +407,7 @@ export default function GameHero() {
                 ease: 'easeInOut',
               }}
             >
-              <ArrowDown size={24} className="group-hover:text-silver-100" />
+              <ArrowDown size={20} className="sm:w-6 sm:h-6 group-hover:text-silver-100" />
             </motion.div>
           </motion.a>
         </motion.div>

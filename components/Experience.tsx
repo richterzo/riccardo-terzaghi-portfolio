@@ -103,11 +103,11 @@ export default function Experience() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-10 md:mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight">
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-3 md:mb-4 tracking-tight px-4">
             <span className="text-gray-100">My Journey</span>
           </h2>
           <div className="w-20 md:w-24 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto mb-3" />
-          <p className="text-sm sm:text-base text-silver-400 font-light max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-silver-400 font-light max-w-xl mx-auto px-4">
             Dal passato al presente: il mio percorso professionale
           </p>
         </motion.div>
