@@ -1,6 +1,7 @@
 'use client'
 
 import SkillSection from './SkillSection'
+import SkillTree from './SkillTree'
 import { Cloud, Camera, Box } from 'lucide-react'
 
 const cloudProjects = [
@@ -153,6 +154,8 @@ export default function Skills() {
         gradientFrom="from-blue-600"
         gradientTo="to-cyan-500"
       />
+
+      <SkillTree />
 
       <SkillSection
         id="drone-pilot"

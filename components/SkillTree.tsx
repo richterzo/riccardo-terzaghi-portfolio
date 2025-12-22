@@ -86,38 +86,26 @@ export default function SkillTree() {
     <section
       id="skill-tree"
       ref={ref}
-      className="py-16 md:py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-gray-950 to-gray-900"
+      className="py-8 md:py-12 relative overflow-hidden"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-          }}
-        />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12 md:mb-16"
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-6 md:mb-8"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
             <span className="text-gray-100">Skill Tree</span>
-          </h2>
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto mb-4" />
-          <p className="text-base sm:text-lg text-silver-400 font-light max-w-2xl mx-auto">
-            Le competenze acquisite negli anni, organizzate per categoria e livello
+          </h3>
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-silver-400 to-transparent mx-auto mb-2" />
+          <p className="text-sm text-silver-400 font-light max-w-xl mx-auto">
+            Competenze acquisite negli anni
           </p>
         </motion.div>
 
-        {/* Skill Tree Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Skill Tree Grid - Compact */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {Object.entries(organizedSkills).map(([category, skills], categoryIndex) => {
             const config = categoryConfig[category as keyof typeof categoryConfig]
             const Icon = config.icon
@@ -125,26 +113,25 @@ export default function SkillTree() {
             return (
               <motion.div
                 key={category}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                transition={{ duration: 0.4, delay: categoryIndex * 0.05 }}
                 className="relative"
               >
-                {/* Category Header */}
-                <div className={`${config.bg} ${config.border} border rounded-xl p-4 mb-4 backdrop-blur-sm`}>
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${config.color} bg-opacity-30`}>
-                      <Icon size={24} className="text-silver-200" />
+                {/* Category Header - Compact */}
+                <div className={`${config.bg} ${config.border} border rounded-lg p-2 mb-2 backdrop-blur-sm`}>
+                  <div className="flex items-center space-x-2">
+                    <div className={`p-1 rounded bg-gradient-to-br ${config.color} bg-opacity-30`}>
+                      <Icon size={16} className="text-silver-200" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-100 capitalize">
+                    <h4 className="text-sm font-bold text-gray-100 capitalize">
                       {category === 'language' ? 'Linguaggi' : category === 'framework' ? 'Framework' : category === 'database' ? 'Database' : category === 'tool' ? 'Tools' : 'Cloud'}
-                    </h3>
+                    </h4>
                   </div>
-                  <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 </div>
 
-                {/* Skills List */}
-                <div className="space-y-3">
+                {/* Skills List - Compact */}
+                <div className="space-y-1.5">
                   {skills.map((skill, skillIndex) => {
                     const isHovered = hoveredSkill === skill.name
                     const parentSkill = skill.parent ? skillTree.find(s => s.name === skill.parent) : null
@@ -172,59 +159,45 @@ export default function SkillTree() {
                           />
                         )}
 
-                        {/* Skill Card */}
+                        {/* Skill Card - Compact */}
                         <motion.div
-                          className={`glass-effect rounded-lg border border-white/10 hover:border-silver-400/40 p-4 transition-all duration-300 cursor-pointer relative overflow-hidden ${
+                          className={`glass-effect rounded-md border border-white/10 hover:border-silver-400/40 p-2 transition-all duration-300 cursor-pointer relative overflow-hidden ${
                             isHovered ? 'scale-105' : ''
                           }`}
-                          whileHover={{ y: -2 }}
+                          whileHover={{ y: -1 }}
                         >
-                          {/* Level Bar Background */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
                           <div className="relative z-10">
-                            <div className="flex items-start justify-between mb-2">
-                              <div className="flex-1">
-                                <div className="flex items-center space-x-2 mb-1">
-                                  <h4 className="text-base font-bold text-gray-100 group-hover:text-silver-200 transition-colors">
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center space-x-1">
+                                  <h5 className="text-xs font-semibold text-gray-100 group-hover:text-silver-200 transition-colors truncate">
                                     {skill.name}
-                                  </h4>
+                                  </h5>
                                   {skill.level >= 90 && (
-                                    <CheckCircle2 size={16} className="text-emerald-400" />
+                                    <CheckCircle2 size={12} className="text-emerald-400 flex-shrink-0" />
                                   )}
                                 </div>
-                                {skill.parent && (
-                                  <p className="text-xs text-silver-500 font-light mb-1">
-                                    ← {skill.parent}
-                                  </p>
-                                )}
-                                {skill.year && (
-                                  <p className="text-xs text-silver-400 font-light">
-                                    Dal {skill.year}
-                                  </p>
-                                )}
                               </div>
                             </div>
 
-                            {/* Progress Bar */}
-                            <div className="relative h-2 bg-gray-800/50 rounded-full overflow-hidden mt-3">
+                            {/* Progress Bar - Compact */}
+                            <div className="relative h-1 bg-gray-800/50 rounded-full overflow-hidden">
                               <motion.div
                                 className={`h-full bg-gradient-to-r ${config.color} rounded-full`}
                                 initial={{ width: 0 }}
                                 animate={isInView ? { width: `${skill.level}%` } : {}}
                                 transition={{
-                                  duration: 1,
-                                  delay: categoryIndex * 0.1 + skillIndex * 0.05 + 0.3,
+                                  duration: 0.8,
+                                  delay: categoryIndex * 0.05 + skillIndex * 0.03 + 0.2,
                                   ease: 'easeOut',
                                 }}
                               />
-                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine" />
                             </div>
                           </div>
 
                           {/* Hover Glow */}
                           <motion.div
-                            className={`absolute -inset-0.5 bg-gradient-to-r ${config.color} opacity-0 group-hover:opacity-20 blur-md -z-10 transition-opacity duration-300`}
+                            className={`absolute -inset-0.5 bg-gradient-to-r ${config.color} opacity-0 group-hover:opacity-20 blur-sm -z-10 transition-opacity duration-300`}
                             initial={false}
                           />
                         </motion.div>
@@ -237,32 +210,6 @@ export default function SkillTree() {
           })}
         </div>
 
-        {/* Legend */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 pt-8 border-t border-white/10"
-        >
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-silver-400">
-            <div className="flex items-center space-x-2">
-              <CheckCircle2 size={16} className="text-emerald-400" />
-              <span>Competenza Master (90%+)</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
-              <span>Linguaggi</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-400" />
-              <span>Framework</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-indigo-500 to-violet-400" />
-              <span>Cloud</span>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
