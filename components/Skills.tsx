@@ -120,24 +120,33 @@ export default function Skills() {
         icon={Cloud}
         description="Progettazione e sviluppo di architetture cloud enterprise, applicazioni web full stack e sistemi distribuiti ad alta performance. Esperienza in AWS, microservizi, serverless computing e DevOps. Co-founder di Wesync."
         technologies={[
+          // Cloud & Infrastructure
           { name: 'AWS Cloud Architecture', level: 95 },
+          { name: 'Serverless Architecture', level: 88 },
+          { name: 'Kubernetes & Docker', level: 85 },
+          { name: 'Terraform', level: 80 },
+          { name: 'CI/CD & DevOps', level: 85 },
+          // Frontend
           { name: 'Next.js & React', level: 95 },
           { name: 'TypeScript', level: 92 },
           { name: 'JavaScript', level: 95 },
-          { name: 'Node.js & Backend', level: 90 },
+          { name: 'Angular', level: 88 },
+          { name: 'HTML5 & CSS3', level: 95 },
+          { name: 'Tailwind CSS', level: 92 },
+          // Backend
+          { name: 'Node.js', level: 90 },
           { name: 'Java', level: 85 },
           { name: 'Python', level: 85 },
-          { name: 'Angular', level: 88 },
-          { name: 'E-Commerce Systems', level: 88 },
-          { name: 'Serverless Architecture', level: 88 },
-          { name: 'Kubernetes & Docker', level: 85 },
+          { name: 'REST APIs', level: 90 },
+          { name: 'GraphQL', level: 80 },
+          // Databases
           { name: 'PostgreSQL', level: 88 },
           { name: 'MongoDB', level: 85 },
           { name: 'Oracle SQL', level: 80 },
           { name: 'Redis', level: 80 },
+          // Tools & Others
           { name: 'Git & Version Control', level: 95 },
-          { name: 'CI/CD & DevOps', level: 85 },
-          { name: 'Terraform', level: 80 },
+          { name: 'E-Commerce Systems', level: 88 },
           { name: 'Pentaho', level: 75 },
         ]}
         projects={cloudProjects}

@@ -27,16 +27,6 @@ const experiences = [
     year: '2024',
   },
   {
-    title: 'Cloud Engineer',
-    company: 'Sky',
-    location: 'Milano, Lombardia, Italia',
-    period: 'lug 2021 - ott 2024',
-    type: 'A contratto',
-    description: 'Joined an amazing team at a cutting-edge company, specializing in AWS development. Contributed to a serverless architecture, container orchestration and event-driven design.',
-    skills: ['Amazon Web Services (AWS)', 'AWS Lambda', 'Serverless', 'Kubernetes', 'Docker'],
-    year: '2021',
-  },
-  {
     title: 'Technical Instructor',
     company: 'Fondazione Et Labora',
     location: 'Milano, Lombardia, Italia',
@@ -45,6 +35,16 @@ const experiences = [
     description: 'Teaching AWS re/Start, a cohort-based workforce development training program that prepares individuals for careers in the cloud and connects them to potential employers.',
     skills: ['Amazon Web Services (AWS)', 'Technical Training'],
     year: '2023',
+  },
+  {
+    title: 'Cloud Engineer',
+    company: 'Sky',
+    location: 'Milano, Lombardia, Italia',
+    period: 'lug 2021 - ott 2024',
+    type: 'A contratto',
+    description: 'Joined an amazing team at a cutting-edge company, specializing in AWS development. Contributed to a serverless architecture, container orchestration and event-driven design.',
+    skills: ['Amazon Web Services (AWS)', 'AWS Lambda', 'Serverless', 'Kubernetes', 'Docker'],
+    year: '2021',
   },
   {
     title: 'Frontend Developer',
