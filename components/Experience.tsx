@@ -37,16 +37,6 @@ const experiences = [
     year: '2021',
   },
   {
-    title: 'Frontend Developer',
-    company: 'Intesi Group S.p.A.',
-    location: 'Milano, Lombardia, Italia',
-    period: 'giu 2021 - ott 2024',
-    type: 'Freelance',
-    description: 'Developed frontend applications, UI/UX design, and dashboard functionalities.',
-    skills: ['Angular', 'React.js', 'TypeScript', 'UI/UX'],
-    year: '2021',
-  },
-  {
     title: 'Technical Instructor',
     company: 'Fondazione Et Labora',
     location: 'Milano, Lombardia, Italia',
@@ -55,6 +45,16 @@ const experiences = [
     description: 'Teaching AWS re/Start, a cohort-based workforce development training program that prepares individuals for careers in the cloud and connects them to potential employers.',
     skills: ['Amazon Web Services (AWS)', 'Technical Training'],
     year: '2023',
+  },
+  {
+    title: 'Frontend Developer',
+    company: 'Intesi Group S.p.A.',
+    location: 'Milano, Lombardia, Italia',
+    period: 'giu 2021 - ott 2024',
+    type: 'Freelance',
+    description: 'Developed frontend applications, UI/UX design, and dashboard functionalities.',
+    skills: ['Angular', 'React.js', 'TypeScript', 'UI/UX'],
+    year: '2021',
   },
   {
     title: 'Software Engineer',
