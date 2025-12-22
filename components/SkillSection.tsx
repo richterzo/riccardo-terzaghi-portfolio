@@ -2,7 +2,8 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useMemo } from 'react'
-import { Cloud, Camera, Box, ExternalLink, ArrowRight } from 'lucide-react'
+import { Cloud, Camera, Box, ExternalLink, ArrowRight, ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 interface Project {
   title: string
@@ -49,6 +50,10 @@ export default function SkillSection({
     }),
     [projects]
   )
+
+  // Mostra solo i primi 3 progetti come highlight
+  const highlightedProjects = sortedProjects.slice(0, 3)
+  const remainingCount = sortedProjects.length - 3
 
   return (
     <section
@@ -102,15 +107,14 @@ export default function SkillSection({
           </p>
         </motion.div>
 
-        {/* Portfolio Projects - Scalabile e Responsive */}
+        {/* Highlight Projects - Solo 3 */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Grid Responsive: 1 col mobile, 2 tablet, 3 desktop, 4 large */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-            {sortedProjects.map((project, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 md:mb-10">
+            {highlightedProjects.map((project, index) => (
               <ProjectCard
                 key={`${project.title}-${index}`}
                 project={project}
@@ -122,6 +126,30 @@ export default function SkillSection({
               />
             ))}
           </div>
+
+          {/* View All Projects Button */}
+          {remainingCount > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <Link
+                href={`#${id}-portfolio`}
+                className="inline-flex items-center space-x-2 px-6 py-3 glass-effect border border-white/10 hover:border-silver-400/40 rounded-xl text-silver-300 hover:text-silver-200 transition-all duration-300 group"
+              >
+                <span className="font-medium">Vedi tutti i progetti</span>
+                <span className="text-xs text-silver-400 group-hover:text-silver-300">
+                  ({sortedProjects.length} totali)
+                </span>
+                <ChevronRight
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>
