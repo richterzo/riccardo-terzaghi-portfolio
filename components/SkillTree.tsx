@@ -204,9 +204,6 @@ export default function SkillTree() {
                                   </p>
                                 )}
                               </div>
-                              <div className={`px-2 py-1 rounded-md ${config.bg} border ${config.border} text-xs font-bold text-silver-200`}>
-                                {skill.level}%
-                              </div>
                             </div>
 
                             {/* Progress Bar */}
