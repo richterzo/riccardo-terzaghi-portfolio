@@ -174,32 +174,32 @@ export default function SkillSection({
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center"
             >
-                <motion.button
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className="inline-flex items-center space-x-2 px-4 xs:px-6 py-2.5 xs:py-3 glass-effect border border-white/10 hover:border-silver-400/40 rounded-xl text-silver-300 hover:text-silver-200 transition-all duration-300 group text-sm xs:text-base"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+              <motion.button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="inline-flex items-center space-x-2 px-4 xs:px-6 py-2.5 xs:py-3 glass-effect border border-white/10 hover:border-silver-400/40 rounded-xl text-silver-300 hover:text-silver-200 transition-all duration-300 group text-sm xs:text-base"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="font-medium">
+                  {isExpanded ? 'Mostra meno' : 'Vedi tutti i progetti'}
+                </span>
+                <span className="text-xs text-silver-400 group-hover:text-silver-300 hidden xs:inline">
+                  ({sortedProjects.length} totali)
+                </span>
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <span className="font-medium">
-                    {isExpanded ? 'Mostra meno' : 'Vedi tutti i progetti'}
-                  </span>
-                  <span className="text-xs text-silver-400 group-hover:text-silver-300 hidden xs:inline">
-                    ({sortedProjects.length} totali)
-                  </span>
-                  <motion.div
-                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {isExpanded ? (
-                      <ChevronUp size={16} className="xs:w-[18px] xs:h-[18px]" />
-                    ) : (
-                      <ChevronDown
-                        size={16}
-                        className="xs:w-[18px] xs:h-[18px] group-hover:translate-y-1 transition-transform"
-                      />
-                    )}
-                  </motion.div>
-                </motion.button>
+                  {isExpanded ? (
+                    <ChevronUp size={16} className="xs:w-[18px] xs:h-[18px]" />
+                  ) : (
+                    <ChevronDown
+                      size={16}
+                      className="xs:w-[18px] xs:h-[18px] group-hover:translate-y-1 transition-transform"
+                    />
+                  )}
+                </motion.div>
+              </motion.button>
             </motion.div>
           )}
         </motion.div>
@@ -305,16 +305,16 @@ function ProjectCard({
         {/* Content - Flex grow per altezza uniforme */}
         <div className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
           <div className="flex-1">
-                  <motion.h4
-                    className="text-sm xs:text-base sm:text-lg md:text-xl font-bold text-gray-100 mb-1.5 group-hover:text-silver-200 transition-colors line-clamp-2"
-                    whileHover={{ x: 2 }}
-                  >
-                    {project.title}
-                  </motion.h4>
+            <motion.h4
+              className="text-sm xs:text-base sm:text-lg md:text-xl font-bold text-gray-100 mb-1.5 group-hover:text-silver-200 transition-colors line-clamp-2"
+              whileHover={{ x: 2 }}
+            >
+              {project.title}
+            </motion.h4>
 
-                  <p className="text-silver-300 text-xs xs:text-sm mb-3 md:mb-4 leading-relaxed line-clamp-2 sm:line-clamp-3 font-light">
-                    {project.description}
-                  </p>
+            <p className="text-silver-300 text-xs xs:text-sm mb-3 md:mb-4 leading-relaxed line-clamp-2 sm:line-clamp-3 font-light">
+              {project.description}
+            </p>
           </div>
 
           {/* Technologies - Responsive */}

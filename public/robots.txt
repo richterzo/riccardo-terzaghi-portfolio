@@ -1,0 +1,7 @@
+# robots.txt for riccardoterzaghi.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://riccardoterzaghi.com/sitemap.xml
+

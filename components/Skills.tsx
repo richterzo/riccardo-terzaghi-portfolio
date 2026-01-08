@@ -7,107 +7,229 @@ import { Cloud, Camera, Box } from 'lucide-react'
 const cloudProjects = [
   {
     title: 'Wesync',
-    description: 'Co-founder di Wesync, azienda specializzata in soluzioni cloud e sviluppo software. Architetture scalabili, AI-powered applications e servizi cloud enterprise.',
-    technologies: ['AWS', 'Cloud Architecture', 'Next.js', 'TypeScript', 'AI/ML', 'Microservices'],
+    description:
+      'Co-founder di Wesync, azienda specializzata in soluzioni cloud e sviluppo software. Architetture scalabili, AI-powered applications e servizi cloud enterprise.',
+    technologies: [
+      'AWS',
+      'Cloud Architecture',
+      'Next.js',
+      'TypeScript',
+      'AI/ML',
+      'Microservices',
+    ],
     link: 'https://wesync.dev/',
     year: '2024 - Presente',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
+  },
+  {
+    title: 'Savo Antincendi',
+    description:
+      'Sito web professionale per azienda leader nei sistemi antincendio. Piattaforma completa con presentazione servizi, portfolio progetti, sistema di contatti e area riservata clienti.',
+    technologies: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Responsive Design',
+      'CMS',
+    ],
+    link: 'https://www.savoantincendi.it/',
+    year: '2025',
+    image:
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Ubify - Cassa Fiscale All-in-One',
-    description: 'Piattaforma completa per gestione fiscale e di cassa. Sistema all-in-one con registratore telematico conforme alle normative fiscali 2025, gestione incassi, scontrini e fatture automatici.',
-    technologies: ['Next.js', 'Fiscal Compliance', 'Payment Systems', 'Hardware Integration', 'TypeScript'],
+    description:
+      'Piattaforma completa per gestione fiscale e di cassa. Sistema all-in-one con registratore telematico conforme alle normative fiscali 2025, gestione incassi, scontrini e fatture automatici.',
+    technologies: [
+      'Next.js',
+      'Fiscal Compliance',
+      'Payment Systems',
+      'Hardware Integration',
+      'TypeScript',
+    ],
     link: 'https://ubify.it/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'GLM Space - E-Commerce',
-    description: 'Piattaforma e-commerce completa con sistema logistico integrato. Gestione inventario, pagamenti, spedizioni e dashboard analytics per prodotti beauty professionali.',
-    technologies: ['Next.js', 'E-Commerce', 'Logistics System', 'Payment Gateway', 'Inventory Management'],
+    description:
+      'Piattaforma e-commerce completa con sistema logistico integrato. Gestione inventario, pagamenti, spedizioni e dashboard analytics per prodotti beauty professionali.',
+    technologies: [
+      'Next.js',
+      'E-Commerce',
+      'Logistics System',
+      'Payment Gateway',
+      'Inventory Management',
+    ],
     link: 'https://glmspace.com/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Bilim Network - Forum',
-    description: 'Piattaforma community per organizzazioni di Agroecologia. Forum interattivo, gestione contenuti, sistema di membership e networking per Eastern Europe, Central and Western Asia.',
-    technologies: ['Next.js', 'Forum System', 'Community Platform', 'Content Management', 'Membership'],
+    description:
+      'Piattaforma community per organizzazioni di Agroecologia. Forum interattivo, gestione contenuti, sistema di membership e networking per Eastern Europe, Central and Western Asia.',
+    technologies: [
+      'Next.js',
+      'Forum System',
+      'Community Platform',
+      'Content Management',
+      'Membership',
+    ],
     link: 'https://bilim.network/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Calori & Scafuri',
-    description: 'Sito vetrina professionale per consulenza finanziaria e patrimoniale. Design elegante, sezioni servizi, blog e sistema di prenotazione consulenze.',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
+    description:
+      'Sito vetrina professionale per consulenza finanziaria e patrimoniale. Design elegante, sezioni servizi, blog e sistema di prenotazione consulenze.',
+    technologies: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Responsive Design',
+    ],
     link: 'https://www.caloriscafuri.it/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Futuro Naturale',
-    description: 'Sito vetrina per centro estetico a Bologna. Presentazione trattamenti, prenotazioni online, gallery e informazioni contatti con design moderno e accattivante.',
-    technologies: ['Next.js', 'React', 'Booking System', 'Gallery', 'Responsive Design'],
+    description:
+      'Sito vetrina per centro estetico a Bologna. Presentazione trattamenti, prenotazioni online, gallery e informazioni contatti con design moderno e accattivante.',
+    technologies: [
+      'Next.js',
+      'React',
+      'Booking System',
+      'Gallery',
+      'Responsive Design',
+    ],
     link: 'https://www.futuronaturale.it/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Otherwise Athletics',
-    description: 'Landing page per palestra CrossFit a Ferrara. Design moderno, presentazione programmi, mindset e gallery. Focus su functional fitness e community.',
-    technologies: ['Next.js', 'React', 'Framer Motion', 'Landing Page', 'Animation'],
+    description:
+      'Landing page per palestra CrossFit a Ferrara. Design moderno, presentazione programmi, mindset e gallery. Focus su functional fitness e community.',
+    technologies: [
+      'Next.js',
+      'React',
+      'Framer Motion',
+      'Landing Page',
+      'Animation',
+    ],
     link: 'https://otherwise-landing.vercel.app/',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop&q=80',
+    image:
+      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop&q=80',
   },
 ]
 
 const droneProjects = [
   {
     title: 'Riprese Aeree e Mappatura 3D',
-    description: 'Riprese aeree professionali di monumenti storici e mappatura 3D del territorio. Fotografia aerea ad alta risoluzione, fotogrammetria e generazione modelli 3D con post-produzione professionale.',
-    technologies: ['DJI Mavic', 'Fotogrammetria', 'Mappatura 3D', 'Post-Produzione', 'Agisoft Metashape', '4K'],
-    year: '2024',
+    description:
+      'Riprese aeree professionali di monumenti storici e mappatura 3D del territorio. Fotografia aerea ad alta risoluzione, fotogrammetria e generazione modelli 3D con post-produzione professionale.',
+    technologies: [
+      'DJI Mavic',
+      'Fotogrammetria',
+      'Mappatura 3D',
+      'Post-Produzione',
+      'Agisoft Metashape',
+      '4K',
+    ],
+    year: '2025',
     image: '/photos/drone-sanluca.jpg',
   },
   {
     title: 'FPV Drone',
-    description: 'Pilotaggio FPV (First Person View) per riprese dinamiche e acrobatiche. Voli ad alta velocità, manovre complesse e riprese immersive per video sportivi e commerciali.',
-    technologies: ['FPV Drone', 'Racing', 'Acrobatic Flying', 'High-Speed', 'Immersive Video'],
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1200&h=800&fit=crop&q=80',
+    description:
+      'Pilotaggio FPV (First Person View) per riprese dinamiche e acrobatiche. Voli ad alta velocità, manovre complesse e riprese immersive per video sportivi e commerciali.',
+    technologies: [
+      'FPV Drone',
+      'Racing',
+      'Acrobatic Flying',
+      'High-Speed',
+      'Immersive Video',
+    ],
+    year: '2025',
+    image:
+      'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Riprese Aeree Commerciali',
-    description: 'Produzione video aereo per campagne pubblicitarie e documentari. Post-produzione professionale con color grading avanzato e stabilizzazione 4K.',
-    technologies: ['DJI Mavic', 'Premiere Pro', 'Color Grading', '4K Video', 'Stabilization'],
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop&q=80',
+    description:
+      'Produzione video aereo per campagne pubblicitarie e documentari. Post-produzione professionale con color grading avanzato e stabilizzazione 4K.',
+    technologies: [
+      'DJI Mavic',
+      'Premiere Pro',
+      'Color Grading',
+      '4K Video',
+      'Stabilization',
+    ],
+    year: '2025',
+    image:
+      'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1200&h=800&fit=crop&q=80',
   },
 ]
 
 const modelingProjects = [
   {
     title: 'Giochi per Bambini Personalizzati',
-    description: 'Creazione di giochi 3D unici partendo dai disegni dei bambini. Modellazione, stampa 3D e finitura di giocattoli personalizzati che trasformano l\'immaginazione in realtà.',
-    technologies: ['Blender', '3D Modeling', '3D Printing', 'Design Personalizzato', 'Post-Processing'],
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80',
+    description:
+      "Creazione di giochi 3D unici partendo dai disegni dei bambini. Modellazione, stampa 3D e finitura di giocattoli personalizzati che trasformano l'immaginazione in realtà.",
+    technologies: [
+      'Blender',
+      '3D Modeling',
+      '3D Printing',
+      'Design Personalizzato',
+      'Post-Processing',
+    ],
+    year: '2025',
+    image:
+      'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Cornice Specchio Infinito',
-    description: 'Design e realizzazione di cornice specchio infinito custom made. Progettazione 3D, modellazione precisa e assemblaggio con LED e specchi per effetto ottico infinito.',
-    technologies: ['Blender', '3D Design', 'LED Integration', 'Custom Manufacturing', 'Optical Design'],
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
+    description:
+      'Design e realizzazione di cornice specchio infinito custom made. Progettazione 3D, modellazione precisa e assemblaggio con LED e specchi per effetto ottico infinito.',
+    technologies: [
+      'Blender',
+      '3D Design',
+      'LED Integration',
+      'Custom Manufacturing',
+      'Optical Design',
+    ],
+    year: '2025',
+    image:
+      'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&h=800&fit=crop&q=80',
   },
   {
     title: 'Maniglie e Utensili Custom Made',
-    description: 'Design e produzione di maniglie e utensili personalizzati per case. Modellazione 3D, prototipazione e stampa 3D di accessori unici su misura per interni ed esterni.',
-    technologies: ['Blender', 'CAD Design', '3D Printing', 'Custom Manufacturing', 'Product Design'],
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80',
+    description:
+      'Design e produzione di maniglie e utensili personalizzati per case. Modellazione 3D, prototipazione e stampa 3D di accessori unici su misura per interni ed esterni.',
+    technologies: [
+      'Blender',
+      'CAD Design',
+      '3D Printing',
+      'Custom Manufacturing',
+      'Product Design',
+    ],
+    year: '2025',
+    image:
+      'https://images.unsplash.com/photo-1565191999001-551c187427bb?w=1200&h=800&fit=crop&q=80',
   },
 ]
 
