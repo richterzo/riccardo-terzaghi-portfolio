@@ -61,10 +61,8 @@ export default function SkillSection({
     [projects]
   )
 
-  // Mostra solo i primi 3 progetti come highlight, o tutti se espanso
-  const displayedProjects = isExpanded
-    ? sortedProjects
-    : sortedProjects.slice(0, 3)
+  // Mostra sempre solo i primi 3 progetti come highlight
+  const displayedProjects = sortedProjects.slice(0, 3)
   const remainingCount = sortedProjects.length - 3
 
   return (
