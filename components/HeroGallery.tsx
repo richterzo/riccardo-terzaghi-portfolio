@@ -1,187 +1,107 @@
 'use client'
 
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { ArrowDown, Linkedin, Mail, Github, ExternalLink, Play, Box, Globe, Camera, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useState, useEffect } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Linkedin, Mail, Github, ExternalLink, Globe } from 'lucide-react'
+import { useRef } from 'react'
 import Image from 'next/image'
 
 interface Project {
   id: string
   title: string
-  category: 'Sito Web' | 'Modello 3D' | 'Video Drone'
   description: string
-  date: string
   image: string
   link?: string
-  videoLink?: string
   tags: string[]
-  icon: any
+  year: string
 }
 
-// Tutti i progetti - Web, Droni, 3D
-const allProjects: Project[] = [
-  // Siti Web
+// 9 progetti nell'ordine specifico
+const projects: Project[] = [
   {
-    id: 'savo-antincendi',
-    title: 'Savo Antincendi',
-    category: 'Sito Web' as const,
-    description: 'Sito web professionale per azienda leader nei sistemi antincendio. Piattaforma completa con presentazione servizi, portfolio progetti, sistema di contatti e area riservata clienti.',
-    date: '2025-01',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80',
-    link: 'https://www.savoantincendi.it/',
-    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Responsive Design', 'CMS'],
-    icon: Globe,
-  },
-  {
-    id: 'drone-mappatura',
-    title: 'Riprese Aeree e Mappatura 3D',
-    category: 'Video Drone' as const,
-    description: 'Riprese aeree professionali di monumenti storici e mappatura 3D del territorio. Fotografia aerea ad alta risoluzione, fotogrammetria e generazione modelli 3D con post-produzione professionale.',
-    date: '2025-01',
-    image: '/photos/drone-sanluca.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=example',
-    tags: ['DJI Mavic', 'Fotogrammetria', 'Mappatura 3D', 'Post-Produzione', 'Agisoft Metashape', '4K'],
-    icon: Camera,
-  },
-  {
-    id: 'giochi-3d',
-    title: 'Giochi per Bambini Personalizzati',
-    category: 'Modello 3D' as const,
-    description: 'Creazione di giochi 3D unici partendo dai disegni dei bambini. Modellazione, stampa 3D e finitura di giocattoli personalizzati che trasformano l\'immaginazione in realtà.',
-    date: '2025-01',
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&q=80',
+    id: 'workout-tracker',
+    title: 'Workout Tracking APP',
+    description: 'Applicazione mobile-first per tracciamento allenamenti, progressi e statistiche fitness. Dashboard personalizzata con grafici e analytics.',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
     link: '#',
-    tags: ['Blender', '3D Modeling', '3D Printing', 'Design Personalizzato', 'Post-Processing'],
-    icon: Box,
+    tags: ['React Native', 'TypeScript', 'Firebase', 'Analytics'],
+    year: '2026',
   },
   {
-    id: 'wesync',
-    title: 'Wesync',
-    category: 'Sito Web' as const,
-    description: 'Co-founder di Wesync, azienda specializzata in soluzioni cloud e sviluppo software. Architetture scalabili, AI-powered applications e servizi cloud enterprise.',
-    date: '2024-12',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-    link: 'https://wesync.dev/',
-    tags: ['AWS', 'Cloud Architecture', 'Next.js', 'TypeScript', 'AI/ML', 'Microservices'],
-    icon: Globe,
-  },
-  {
-    id: 'fpv-drone',
-    title: 'FPV Drone',
-    category: 'Video Drone' as const,
-    description: 'Pilotaggio FPV (First Person View) per riprese dinamiche e acrobatiche. Voli ad alta velocità, manovre complesse e riprese immersive per video sportivi e commerciali.',
-    date: '2024-12',
-    image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
-    videoLink: 'https://www.youtube.com/watch?v=example',
-    tags: ['FPV Drone', 'Racing', 'Acrobatic Flying', 'High-Speed', 'Immersive Video'],
-    icon: Camera,
-  },
-  {
-    id: 'specchio-infinito',
-    title: 'Cornice Specchio Infinito',
-    category: 'Modello 3D' as const,
-    description: 'Design e realizzazione di cornice specchio infinito custom made. Progettazione 3D, modellazione precisa e assemblaggio con LED e specchi per effetto ottico infinito.',
-    date: '2024-12',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
+    id: 'apx',
+    title: 'APX',
+    description: 'Piattaforma innovativa per gestione progetti e collaborazione team. Soluzione completa con dashboard, analytics e integrazione con tool esterni.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     link: '#',
-    tags: ['Blender', '3D Design', 'LED Integration', 'Custom Manufacturing', 'Optical Design'],
-    icon: Box,
-  },
-  {
-    id: 'ubify',
-    title: 'Ubify - Cassa Fiscale All-in-One',
-    category: 'Sito Web' as const,
-    description: 'Piattaforma completa per gestione fiscale e di cassa. Sistema all-in-one con registratore telematico conforme alle normative fiscali 2025, gestione incassi, scontrini e fatture automatici.',
-    date: '2024-11',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-    link: 'https://ubify.it/',
-    tags: ['Next.js', 'Fiscal Compliance', 'Payment Systems', 'Hardware Integration', 'TypeScript'],
-    icon: Globe,
-  },
-  {
-    id: 'drone-commerciale',
-    title: 'Riprese Aeree Commerciali',
-    category: 'Video Drone' as const,
-    description: 'Produzione video aereo per campagne pubblicitarie e documentari. Post-produzione professionale con color grading avanzato e stabilizzazione 4K.',
-    date: '2024-11',
-    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&q=80',
-    videoLink: 'https://www.youtube.com/watch?v=example',
-    tags: ['DJI Mavic', 'Premiere Pro', 'Color Grading', '4K Video', 'Stabilization'],
-    icon: Camera,
-  },
-  {
-    id: 'maniglie-custom',
-    title: 'Maniglie e Utensili Custom Made',
-    category: 'Modello 3D' as const,
-    description: 'Design e produzione di maniglie e utensili personalizzati per case. Modellazione 3D, prototipazione e stampa 3D di accessori unici su misura per interni ed esterni.',
-    date: '2024-11',
-    image: 'https://images.unsplash.com/photo-1565191999001-551c187427bb?w=800&q=80',
-    link: '#',
-    tags: ['Blender', 'CAD Design', '3D Printing', 'Custom Manufacturing', 'Product Design'],
-    icon: Box,
-  },
-  {
-    id: 'glmspace',
-    title: 'GLM Space - E-Commerce',
-    category: 'Sito Web' as const,
-    description: 'Piattaforma e-commerce completa con sistema logistico integrato. Gestione inventario, pagamenti, spedizioni e dashboard analytics per prodotti beauty professionali.',
-    date: '2024-10',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-    link: 'https://glmspace.com/',
-    tags: ['Next.js', 'E-Commerce', 'Logistics System', 'Payment Gateway', 'Inventory Management'],
-    icon: Globe,
-  },
-  {
-    id: 'bilim-network',
-    title: 'Bilim Network - Forum',
-    category: 'Sito Web' as const,
-    description: 'Piattaforma community per organizzazioni di Agroecologia. Forum interattivo, gestione contenuti, sistema di membership e networking per Eastern Europe, Central and Western Asia.',
-    date: '2024-09',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-    link: 'https://bilim.network/',
-    tags: ['Next.js', 'Forum System', 'Community Platform', 'Content Management', 'Membership'],
-    icon: Globe,
-  },
-  {
-    id: 'calori-scafuri',
-    title: 'Calori & Scafuri',
-    category: 'Sito Web' as const,
-    description: 'Sito vetrina professionale per consulenza finanziaria e patrimoniale. Design elegante, sezioni servizi, blog e sistema di prenotazione consulenze.',
-    date: '2024-08',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
-    link: 'https://www.caloriscafuri.it/',
-    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
-    icon: Globe,
-  },
-  {
-    id: 'futuro-naturale',
-    title: 'Futuro Naturale',
-    category: 'Sito Web' as const,
-    description: 'Sito vetrina per centro estetico a Bologna. Presentazione trattamenti, prenotazioni online, gallery e informazioni contatti con design moderno e accattivante.',
-    date: '2024-07',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
-    link: 'https://www.futuronaturale.it/',
-    tags: ['Next.js', 'React', 'Booking System', 'Gallery', 'Responsive Design'],
-    icon: Globe,
+    tags: ['Next.js', 'React', 'TypeScript', 'Cloud'],
+    year: '2025',
   },
   {
     id: 'otherwise',
     title: 'Otherwise Athletics',
-    category: 'Sito Web' as const,
     description: 'Landing page per palestra CrossFit a Ferrara. Design moderno, presentazione programmi, mindset e gallery. Focus su functional fitness e community.',
-    date: '2024-06',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
     link: 'https://otherwise-landing.vercel.app/',
-    tags: ['Next.js', 'React', 'Framer Motion', 'Landing Page', 'Animation'],
-    icon: Globe,
+    tags: ['Next.js', 'Framer Motion', 'Landing Page'],
+    year: '2024',
   },
-].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  {
+    id: 'savo-antincendi',
+    title: 'Savo Antincendi',
+    description: 'Sito web professionale per azienda leader nei sistemi antincendio. Piattaforma completa con presentazione servizi, portfolio progetti e area riservata clienti.',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80',
+    link: 'https://www.savoantincendi.it/',
+    tags: ['Next.js', 'React', 'TypeScript', 'CMS'],
+    year: '2025',
+  },
+  {
+    id: 'ubify',
+    title: 'Ubify',
+    description: 'Piattaforma completa per gestione fiscale e di cassa. Sistema all-in-one con registratore telematico conforme alle normative fiscali 2025.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+    link: 'https://ubify.it/',
+    tags: ['Next.js', 'Fiscal Compliance', 'Payment Systems'],
+    year: '2024',
+  },
+  {
+    id: 'glmspace',
+    title: 'GLM Space',
+    description: 'Piattaforma e-commerce completa con sistema logistico integrato. Gestione inventario, pagamenti, spedizioni e dashboard analytics per prodotti beauty.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+    link: 'https://glmspace.com/',
+    tags: ['E-Commerce', 'Logistics', 'Payment Gateway'],
+    year: '2024',
+  },
+  {
+    id: 'calori-scafuri',
+    title: 'Calori & Scafuri',
+    description: 'Sito vetrina professionale per consulenza finanziaria e patrimoniale. Design elegante, sezioni servizi, blog e sistema di prenotazione consulenze.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    link: 'https://www.caloriscafuri.it/',
+    tags: ['Next.js', 'Financial', 'Booking System'],
+    year: '2024',
+  },
+  {
+    id: 'futuro-naturale',
+    title: 'Futuro Naturale',
+    description: 'Sito vetrina per centro estetico a Bologna. Presentazione trattamenti, prenotazioni online, gallery e informazioni contatti con design moderno.',
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
+    link: 'https://www.futuronaturale.it/',
+    tags: ['Next.js', 'Booking System', 'Gallery'],
+    year: '2024',
+  },
+  {
+    id: 'bilim-network',
+    title: 'Bilim Network',
+    description: 'Piattaforma community per organizzazioni di Agroecologia. Forum interattivo, gestione contenuti, sistema di membership e networking.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    link: 'https://bilim.network/',
+    tags: ['Forum System', 'Community', 'Membership'],
+    year: '2024',
+  },
+]
 
 export default function HeroGallery() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
-  const [selectedCategory, setSelectedCategory] = useState<string>('Tutti')
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -189,68 +109,6 @@ export default function HeroGallery() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
-
-  // Filter projects based on selected category
-  const projects = selectedCategory === 'Tutti' 
-    ? allProjects 
-    : allProjects.filter(p => p.category === selectedCategory)
-
-  const cardsPerView = 3
-  const totalSlides = Math.ceil(projects.length / cardsPerView)
-
-  // Reset carousel index when filter changes
-  useEffect(() => {
-    setCurrentIndex(0)
-  }, [selectedCategory])
-
-  // Auto-play carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      paginate(1)
-    }, 6000)
-
-    return () => clearInterval(timer)
-  }, [currentIndex])
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection)
-    setCurrentIndex((prevIndex) => {
-      let nextIndex = prevIndex + newDirection
-      if (nextIndex < 0) nextIndex = totalSlides - 1
-      if (nextIndex >= totalSlides) nextIndex = 0
-      return nextIndex
-    })
-  }
-
-  const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1)
-    setCurrentIndex(index)
-  }
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-  }
-
-  const swipeConfidenceThreshold = 10000
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity
-  }
-
-  const startIdx = currentIndex * cardsPerView
-  const visibleProjects = projects.slice(startIdx, startIdx + cardsPerView)
 
   return (
     <section
@@ -347,7 +205,7 @@ export default function HeroGallery() {
             </p>
 
             {/* Social Links */}
-            <div className="flex justify-center flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
+            <div className="flex justify-center flex-wrap gap-2 md:gap-3">
               {[
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/riccardoterzaghi', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:riccardo@example.com', label: 'Email' },
@@ -369,205 +227,119 @@ export default function HeroGallery() {
                 )
               })}
             </div>
-
-            {/* Category Filters */}
-            <div className="flex justify-center flex-wrap gap-2 md:gap-3">
-              {['Tutti', 'Sito Web', 'Video Drone', 'Modello 3D'].map((category) => (
-                <motion.button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
-                    selectedCategory === category
-                      ? 'bg-gradient-to-r from-silver-600 to-silver-500 text-gray-950 shadow-lg shadow-silver-500/50'
-                      : 'glass-effect text-silver-300 hover:text-silver-100 hover:border-silver-400/50'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Carousel - 3 Cards */}
-          <div className="relative flex-1 flex items-center justify-center mb-8">
-            <div className="w-full max-w-6xl mx-auto">
-              {/* Main Carousel */}
-              <div className="relative min-h-[520px] flex items-center justify-center">
-                <AnimatePresence initial={false} custom={direction} mode="wait">
-                  <motion.div
-                    key={currentIndex}
-                    custom={direction}
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                      x: { type: 'spring', stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                    }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={1}
-                    onDragEnd={(e, { offset, velocity }) => {
-                      const swipe = swipePower(offset.x, velocity.x)
-                      if (swipe < -swipeConfidenceThreshold) {
-                        paginate(1)
-                      } else if (swipe > swipeConfidenceThreshold) {
-                        paginate(-1)
-                      }
-                    }}
-                    className="absolute w-full cursor-grab active:cursor-grabbing"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                      {visibleProjects.map((project, idx) => {
-                        const Icon = project.icon
-                        return (
-                          <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="group relative bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/50 hover:border-silver-400/50 transition-all duration-300"
-                            whileHover={{ y: -8, scale: 1.02 }}
-                          >
-                            {/* Project Image */}
-                            <div className="relative h-48 overflow-hidden">
-                              <Image
-                                src={project.image}
-                                alt={project.title}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
-                              
-                              {/* Category Badge */}
-                              <div className="absolute top-3 left-3 px-3 py-1 rounded-full glass-effect text-xs font-medium text-silver-200 flex items-center gap-1.5">
-                                <Icon size={14} />
-                                {project.category}
-                              </div>
+          {/* Horizontal Scrollable Gallery */}
+          <div className="relative mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              {/* Gallery Container */}
+              <div className="relative">
+                {/* Scroll Container */}
+                <div className="overflow-x-auto overflow-y-hidden pb-6 scrollbar-hide snap-x snap-mandatory">
+                  <div className="flex gap-4 md:gap-6 px-4 md:px-0" style={{ width: 'max-content' }}>
+                    {projects.map((project, idx) => (
+                      <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.6 + idx * 0.1 }}
+                        className="group relative bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/50 hover:border-silver-400/50 transition-all duration-300 snap-start flex-shrink-0"
+                        style={{ width: '280px', maxWidth: '85vw' }}
+                        whileHover={{ y: -8, scale: 1.02 }}
+                      >
+                        {/* Project Image */}
+                        <div className="relative h-48 overflow-hidden">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
+                          
+                          {/* Year Badge */}
+                          <div className="absolute top-3 right-3 px-3 py-1 rounded-full glass-effect text-xs font-medium text-silver-200">
+                            {project.year}
+                          </div>
 
-                              {/* Play Button for Videos */}
-                              {project.videoLink && (
-                                <motion.div
-                                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                                >
-                                  <div className="w-12 h-12 rounded-full bg-silver-500/90 backdrop-blur-sm flex items-center justify-center">
-                                    <Play size={20} className="text-gray-950 ml-0.5" fill="currentColor" />
-                                  </div>
-                                </motion.div>
-                              )}
-                            </div>
+                          {/* Link Icon */}
+                          {project.link && (
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="absolute top-3 left-3 p-2 rounded-full bg-silver-500/10 hover:bg-silver-500/20 backdrop-blur-sm transition-colors"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Globe size={16} className="text-silver-300" />
+                            </a>
+                          )}
+                        </div>
 
-                            {/* Project Info */}
-                            <div className="p-4">
-                              <div className="flex items-start justify-between mb-2">
-                                <h3 className="text-base font-bold text-gray-100 line-clamp-2 flex-1">
-                                  {project.title}
-                                </h3>
-                                {project.link && (
-                                  <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="ml-2 p-1.5 rounded-full bg-silver-500/10 hover:bg-silver-500/20 transition-colors flex-shrink-0"
-                                    onClick={(e) => e.stopPropagation()}
-                                  >
-                                    <ExternalLink size={14} className="text-silver-300" />
-                                  </a>
-                                )}
-                              </div>
+                        {/* Project Info */}
+                        <div className="p-4">
+                          <h3 className="text-lg font-bold text-gray-100 mb-2 line-clamp-1">
+                            {project.title}
+                          </h3>
 
-                              <p className="text-xs text-silver-400 mb-3 line-clamp-2">
-                                {project.description}
-                              </p>
+                          <p className="text-xs text-silver-400 mb-3 line-clamp-3 leading-relaxed">
+                            {project.description}
+                          </p>
 
-                              {/* Date */}
-                              <p className="text-xs text-silver-500 mb-3">
-                                {new Date(project.date).toLocaleDateString('it-IT', { 
-                                  month: 'long', 
-                                  year: 'numeric' 
-                                })}
-                              </p>
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-1.5">
+                            {project.tags.slice(0, 3).map((tag, tagIndex) => (
+                              <span
+                                key={tagIndex}
+                                className="px-2 py-1 bg-silver-500/10 text-silver-300 rounded text-xs"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                            {project.tags.length > 3 && (
+                              <span className="px-2 py-1 text-silver-400 text-xs">
+                                +{project.tags.length - 3}
+                              </span>
+                            )}
+                          </div>
+                        </div>
 
-                              {/* Tags */}
-                              <div className="flex flex-wrap gap-1.5">
-                                {project.tags.slice(0, 3).map((tag, tagIndex) => (
-                                  <span
-                                    key={tagIndex}
-                                    className="px-2 py-1 bg-silver-500/10 text-silver-300 rounded text-xs"
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                                {project.tags.length > 3 && (
-                                  <span className="px-2 py-1 text-silver-400 text-xs">
-                                    +{project.tags.length - 3}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
+                        {/* Hover Glow Effect */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-br from-silver-400/0 via-silver-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
 
-                            {/* Hover Glow Effect */}
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-br from-silver-400/0 via-silver-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                            />
-                          </motion.div>
-                        )
-                      })}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Navigation Arrows */}
-                <button
-                  onClick={() => paginate(-1)}
-                  className="absolute -left-4 md:-left-16 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full glass-effect hover:border-silver-400/50 transition-all duration-300 group"
-                  aria-label="Previous projects"
-                >
-                  <ChevronLeft size={24} className="text-silver-300 group-hover:text-silver-100 transition-colors" />
-                </button>
-                <button
-                  onClick={() => paginate(1)}
-                  className="absolute -right-4 md:-right-16 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full glass-effect hover:border-silver-400/50 transition-all duration-300 group"
-                  aria-label="Next projects"
-                >
-                  <ChevronRight size={24} className="text-silver-300 group-hover:text-silver-100 transition-colors" />
-                </button>
+                {/* Scroll Indicators */}
+                <div className="absolute left-0 top-0 bottom-6 w-20 bg-gradient-to-r from-gray-900 to-transparent pointer-events-none md:hidden" />
+                <div className="absolute right-0 top-0 bottom-6 w-20 bg-gradient-to-l from-gray-900 to-transparent pointer-events-none md:hidden" />
               </div>
 
-              {/* Dots Indicator */}
-              <div className="flex justify-center gap-2 mt-6 md:mt-8">
-                {Array.from({ length: totalSlides }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      index === currentIndex
-                        ? 'w-8 md:w-10 h-2 bg-gradient-to-r from-silver-600 to-silver-500'
-                        : 'w-2 h-2 bg-silver-500/30 hover:bg-silver-500/50'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Project Counter */}
-              <div className="text-center mt-4 text-sm text-silver-400">
-                {currentIndex + 1} / {totalSlides} <span className="text-silver-500">({projects.length} {selectedCategory !== 'Tutti' ? `progetti ${selectedCategory}` : 'progetti totali'})</span>
-              </div>
-            </div>
+              {/* Scroll Hint */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+                className="text-center mt-4 text-xs md:text-sm text-silver-500"
+              >
+                <span className="md:hidden">← Scorri per vedere tutti i progetti →</span>
+                <span className="hidden md:inline">{projects.length} progetti totali</span>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 1.2 }}
             className="flex justify-center gap-4 pt-4"
           >
             <motion.a
@@ -589,6 +361,17 @@ export default function HeroGallery() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Custom Scrollbar Hide */}
+      <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   )
 }
