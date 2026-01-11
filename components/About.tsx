@@ -102,7 +102,7 @@ export default function About() {
             className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6"
           >
             {[
-              { label: 'Anni Esperienza', value: '5+' },
+              { label: 'Anni Esperienza', value: '10+' },
               { label: 'Progetti Completati', value: '20+' },
               { label: 'Certificazioni', value: '4' },
               { label: 'Aziende', value: '5+' },

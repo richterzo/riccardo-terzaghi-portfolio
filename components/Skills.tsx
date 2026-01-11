@@ -1,325 +1,182 @@
 'use client'
 
-import SkillSection from './SkillSection'
-import SkillTree from './SkillTree'
-import { Cloud, Camera, Box } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import { Code } from 'lucide-react'
 
-const cloudProjects = [
+const skillCategories = [
   {
-    title: 'Wesync',
-    description:
-      'Co-founder di Wesync, azienda specializzata in soluzioni cloud e sviluppo software. Architetture scalabili, AI-powered applications e servizi cloud enterprise.',
-    technologies: [
-      'AWS',
-      'Cloud Architecture',
-      'Next.js',
-      'TypeScript',
-      'AI/ML',
-      'Microservices',
-    ],
-    link: 'https://wesync.dev/',
-    year: '2024 - Presente',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
+    title: 'Linguaggi',
+    skills: ['JavaScript', 'HTML5', 'CSS3', 'TypeScript', 'SQL', 'Java', 'Python'],
   },
   {
-    title: 'Savo Antincendi',
-    description:
-      'Sito web professionale per azienda leader nei sistemi antincendio. Piattaforma completa con presentazione servizi, portfolio progetti, sistema di contatti e area riservata clienti.',
-    technologies: [
-      'Next.js',
-      'React',
-      'TypeScript',
-      'Tailwind CSS',
-      'Responsive Design',
-      'CMS',
-    ],
-    link: 'https://www.savoantincendi.it/',
-    year: '2025',
-    image:
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=800&fit=crop&q=80',
+    title: 'Framework',
+    skills: ['React', 'Next.js', 'Tailwind CSS', 'Node.js', 'REST APIs', 'Angular', 'GraphQL'],
   },
   {
-    title: 'Ubify - Cassa Fiscale All-in-One',
-    description:
-      'Piattaforma completa per gestione fiscale e di cassa. Sistema all-in-one con registratore telematico conforme alle normative fiscali 2025, gestione incassi, scontrini e fatture automatici.',
-    technologies: [
-      'Next.js',
-      'Fiscal Compliance',
-      'Payment Systems',
-      'Hardware Integration',
-      'TypeScript',
-    ],
-    link: 'https://ubify.it/',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'GLM Space - E-Commerce',
-    description:
-      'Piattaforma e-commerce completa con sistema logistico integrato. Gestione inventario, pagamenti, spedizioni e dashboard analytics per prodotti beauty professionali.',
-    technologies: [
-      'Next.js',
-      'E-Commerce',
-      'Logistics System',
-      'Payment Gateway',
-      'Inventory Management',
-    ],
-    link: 'https://glmspace.com/',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Bilim Network - Forum',
-    description:
-      'Piattaforma community per organizzazioni di Agroecologia. Forum interattivo, gestione contenuti, sistema di membership e networking per Eastern Europe, Central and Western Asia.',
-    technologies: [
-      'Next.js',
-      'Forum System',
-      'Community Platform',
-      'Content Management',
-      'Membership',
-    ],
-    link: 'https://bilim.network/',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Calori & Scafuri',
-    description:
-      'Sito vetrina professionale per consulenza finanziaria e patrimoniale. Design elegante, sezioni servizi, blog e sistema di prenotazione consulenze.',
-    technologies: [
-      'Next.js',
-      'React',
-      'TypeScript',
-      'Tailwind CSS',
-      'Responsive Design',
-    ],
-    link: 'https://www.caloriscafuri.it/',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Futuro Naturale',
-    description:
-      'Sito vetrina per centro estetico a Bologna. Presentazione trattamenti, prenotazioni online, gallery e informazioni contatti con design moderno e accattivante.',
-    technologies: [
-      'Next.js',
-      'React',
-      'Booking System',
-      'Gallery',
-      'Responsive Design',
-    ],
-    link: 'https://www.futuronaturale.it/',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Otherwise Athletics',
-    description:
-      'Landing page per palestra CrossFit a Ferrara. Design moderno, presentazione programmi, mindset e gallery. Focus su functional fitness e community.',
-    technologies: [
-      'Next.js',
-      'React',
-      'Framer Motion',
-      'Landing Page',
-      'Animation',
-    ],
-    link: 'https://otherwise-landing.vercel.app/',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop&q=80',
-  },
-]
-
-const droneProjects = [
-  {
-    title: 'Riprese Aeree e Mappatura 3D',
-    description:
-      'Riprese aeree professionali di monumenti storici e mappatura 3D del territorio. Fotografia aerea ad alta risoluzione, fotogrammetria e generazione modelli 3D con post-produzione professionale.',
-    technologies: [
-      'DJI Mavic',
-      'Fotogrammetria',
-      'Mappatura 3D',
-      'Post-Produzione',
-      'Agisoft Metashape',
-      '4K',
-    ],
-    year: '2025',
-    image: '/photos/drone-sanluca.jpg',
-  },
-  {
-    title: 'FPV Drone',
-    description:
-      'Pilotaggio FPV (First Person View) per riprese dinamiche e acrobatiche. Voli ad alta velocità, manovre complesse e riprese immersive per video sportivi e commerciali.',
-    technologies: [
-      'FPV Drone',
-      'Racing',
-      'Acrobatic Flying',
-      'High-Speed',
-      'Immersive Video',
-    ],
-    year: '2025',
-    image:
-      'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Riprese Aeree Commerciali',
-    description:
-      'Produzione video aereo per campagne pubblicitarie e documentari. Post-produzione professionale con color grading avanzato e stabilizzazione 4K.',
-    technologies: [
-      'DJI Mavic',
-      'Premiere Pro',
-      'Color Grading',
-      '4K Video',
-      'Stabilization',
-    ],
-    year: '2025',
-    image:
-      'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1200&h=800&fit=crop&q=80',
-  },
-]
-
-const modelingProjects = [
-  {
-    title: 'Giochi per Bambini Personalizzati',
-    description:
-      "Creazione di giochi 3D unici partendo dai disegni dei bambini. Modellazione, stampa 3D e finitura di giocattoli personalizzati che trasformano l'immaginazione in realtà.",
-    technologies: [
-      'Blender',
-      '3D Modeling',
-      '3D Printing',
-      'Design Personalizzato',
-      'Post-Processing',
-    ],
-    year: '2025',
-    image:
-      'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Cornice Specchio Infinito',
-    description:
-      'Design e realizzazione di cornice specchio infinito custom made. Progettazione 3D, modellazione precisa e assemblaggio con LED e specchi per effetto ottico infinito.',
-    technologies: [
-      'Blender',
-      '3D Design',
-      'LED Integration',
-      'Custom Manufacturing',
-      'Optical Design',
-    ],
-    year: '2025',
-    image:
-      'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&h=800&fit=crop&q=80',
-  },
-  {
-    title: 'Maniglie e Utensili Custom Made',
-    description:
-      'Design e produzione di maniglie e utensili personalizzati per case. Modellazione 3D, prototipazione e stampa 3D di accessori unici su misura per interni ed esterni.',
-    technologies: [
-      'Blender',
-      'CAD Design',
-      '3D Printing',
-      'Custom Manufacturing',
-      'Product Design',
-    ],
-    year: '2025',
-    image:
-      'https://images.unsplash.com/photo-1565191999001-551c187427bb?w=1200&h=800&fit=crop&q=80',
+    title: 'Cloud',
+    skills: ['AWS', 'Serverless', 'Kubernetes'],
   },
 ]
 
 export default function Skills() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  }
+
   return (
-    <>
-      <SkillSection
-        id="cloud-architecture"
-        title="Architettura Cloud & Full Stack"
-        subtitle="Soluzioni Scalabili e Moderne"
-        icon={Cloud}
-        description="Progettazione e sviluppo di architetture cloud enterprise, applicazioni web full stack e sistemi distribuiti ad alta performance. Esperienza in AWS, microservizi, serverless computing e DevOps. Co-founder di Wesync."
-        technologies={[
-          // Cloud & Infrastructure
-          { name: 'AWS Cloud Architecture', level: 95 },
-          { name: 'Serverless Architecture', level: 88 },
-          { name: 'Kubernetes & Docker', level: 85 },
-          { name: 'Terraform', level: 80 },
-          { name: 'CI/CD & DevOps', level: 85 },
-          // Frontend
-          { name: 'Next.js & React', level: 95 },
-          { name: 'TypeScript', level: 92 },
-          { name: 'JavaScript', level: 95 },
-          { name: 'Angular', level: 88 },
-          { name: 'HTML5 & CSS3', level: 95 },
-          { name: 'Tailwind CSS', level: 92 },
-          // Backend
-          { name: 'Node.js', level: 90 },
-          { name: 'Java', level: 85 },
-          { name: 'Python', level: 85 },
-          { name: 'REST APIs', level: 90 },
-          { name: 'GraphQL', level: 80 },
-          // Databases
-          { name: 'PostgreSQL', level: 88 },
-          { name: 'MongoDB', level: 85 },
-          { name: 'Oracle SQL', level: 80 },
-          { name: 'Redis', level: 80 },
-          // Tools & Others
-          { name: 'Git & Version Control', level: 95 },
-          { name: 'E-Commerce Systems', level: 88 },
-          { name: 'Pentaho', level: 75 },
-        ]}
-        projects={cloudProjects}
-        gradientFrom="from-cloud-600"
-        gradientTo="to-cloud-400"
-      />
+    <section
+      ref={ref}
+      id="skills"
+      className="py-20 md:py-32 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 relative overflow-hidden"
+    >
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px',
+          }}
+        />
+      </div>
 
-      <SkillTree />
+      {/* Floating Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-96 h-96 bg-silver-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      </div>
 
-      <SkillSection
-        id="drone-pilot"
-        title="Pilota di Droni"
-        subtitle="Riprese Aeree e Mappatura Professionale"
-        icon={Camera}
-        description="Pilotaggio professionale di droni per riprese aeree, mappatura 3D, ispezioni industriali e fotogrammetria. Certificazioni ENAC e esperienza con droni DJI Enterprise."
-        technologies={[
-          { name: 'Pilotaggio Professionale', level: 90 },
-          { name: 'Riprese Aeree 4K', level: 88 },
-          { name: 'Fotogrammetria', level: 85 },
-          { name: 'Mappatura 3D', level: 85 },
-          { name: 'Ispezioni Industriali', level: 82 },
-          { name: 'Post-Produzione Video', level: 80 },
-          { name: 'Analisi Termografica', level: 75 },
-          { name: 'GIS & Cartografia', level: 70 },
-        ]}
-        projects={droneProjects}
-        gradientFrom="from-drone-600"
-        gradientTo="to-drone-400"
-      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <motion.div
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-effect mb-6"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Code size={20} className="text-silver-400" />
+            <span className="text-silver-300 text-sm font-medium">Technical Skills</span>
+          </motion.div>
 
-      <SkillSection
-        id="3d-modeling"
-        title="Modellazione 3D"
-        subtitle="Design e Visualizzazione Professionale"
-        icon={Box}
-        description="Design e modellazione 3D per visualizzazione architettonica, rendering fotorealistico, prototipazione e animazione. Competenze avanzate in Blender, texturing e lighting design."
-        technologies={[
-          { name: 'Blender', level: 90 },
-          { name: '3D Modeling', level: 88 },
-          { name: 'Texturing & Materials', level: 85 },
-          { name: 'Rendering Fotorealistico', level: 82 },
-          { name: 'Animation & Rigging', level: 75 },
-          { name: 'CAD Design', level: 70 },
-          { name: '3D Printing Prep', level: 75 },
-          { name: 'VR/AR Ready', level: 70 },
-        ]}
-        projects={modelingProjects}
-        gradientFrom="from-printing-600"
-        gradientTo="to-printing-400"
-      />
-    </>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-100">
+            Skill <span className="text-gradient-silver">Tree</span>
+          </h2>
+          <p className="text-silver-400 text-lg md:text-xl max-w-2xl mx-auto">
+            Competenze acquisite negli anni
+          </p>
+        </motion.div>
+
+        {/* Skill Tree */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="grid md:grid-cols-3 gap-8 md:gap-10"
+        >
+          {skillCategories.map((category, categoryIndex) => (
+            <motion.div
+              key={category.title}
+              variants={itemVariants}
+              className="relative"
+            >
+              {/* Category Card */}
+              <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800/50 hover:border-silver-400/50 transition-all duration-300 group">
+                {/* Glow Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-silver-400/0 via-silver-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"
+                />
+
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Category Title */}
+                  <h3 className="text-2xl font-bold text-gray-100 mb-6 flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-silver-600 to-silver-400" />
+                    {category.title}
+                  </h3>
+
+                  {/* Skills List */}
+                  <div className="space-y-3">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skill}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{
+                          delay: categoryIndex * 0.2 + skillIndex * 0.1,
+                          duration: 0.5,
+                        }}
+                        className="group/skill"
+                      >
+                        <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-colors">
+                          <motion.div
+                            className="w-1.5 h-1.5 rounded-full bg-silver-400"
+                            whileHover={{ scale: 1.5 }}
+                          />
+                          <span className="text-silver-300 group-hover/skill:text-silver-100 transition-colors font-medium">
+                            {skill}
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Decorative Corner */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-silver-400/10 to-transparent rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Bottom Decoration */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-16 flex justify-center"
+        >
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-silver-400 to-transparent rounded-full" />
+        </motion.div>
+      </div>
+    </section>
   )
 }
