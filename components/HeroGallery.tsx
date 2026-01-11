@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowDown, Linkedin, Mail, Github, ExternalLink, Play, Box, Globe, Camera } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { ArrowDown, Linkedin, Mail, Github, ExternalLink, Play, Box, Globe, Camera, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 
 interface Project {
@@ -122,7 +122,8 @@ const projects: Project[] = [
 
 export default function HeroGallery() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [selectedCategory, setSelectedCategory] = useState<string>('Tutti')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -131,34 +132,57 @@ export default function HeroGallery() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
 
-  const categories = ['Tutti', 'Sito Web', 'Modello 3D', 'Video Drone']
-  
-  const filteredProjects = selectedCategory === 'Tutti' 
-    ? projects 
-    : projects.filter(p => p.category === selectedCategory)
+  // Auto-play carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1)
+    }, 6000) // Change slide every 6 seconds
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
+    return () => clearInterval(timer)
+  }, [currentIndex])
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection)
+    setCurrentIndex((prevIndex) => {
+      let nextIndex = prevIndex + newDirection
+      if (nextIndex < 0) nextIndex = projects.length - 1
+      if (nextIndex >= projects.length) nextIndex = 0
+      return nextIndex
+    })
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1)
+    setCurrentIndex(index)
   }
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.9,
+    }),
+  }
+
+  const swipeConfidenceThreshold = 10000
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity
+  }
+
+  const currentProject = projects[currentIndex]
+  const Icon = currentProject.icon
 
   return (
     <section
@@ -207,24 +231,23 @@ export default function HeroGallery() {
 
       <motion.div
         style={{ opacity, scale }}
-        className="relative z-10 pt-20 md:pt-24 pb-12"
+        className="relative z-10 flex flex-col min-h-screen"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 md:pt-24 pb-8">
           {/* Hero Header */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center mb-12 md:mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-8 md:mb-12"
           >
             <motion.div
-              variants={itemVariants}
-              className="mb-6 md:mb-8"
+              className="mb-4 md:mb-6"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.div
                 className="inline-block relative"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-silver-400/20 to-blue-400/20 rounded-full blur-xl"
@@ -238,215 +261,220 @@ export default function HeroGallery() {
                     ease: 'easeInOut',
                   }}
                 />
-                <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full bg-gradient-to-br from-silver-600 via-silver-500 to-gray-800 flex items-center justify-center text-2xl md:text-4xl font-bold text-gray-950 shadow-2xl border border-silver-400/30">
+                <div className="relative w-20 h-20 md:w-28 md:h-28 mx-auto rounded-full bg-gradient-to-br from-silver-600 via-silver-500 to-gray-800 flex items-center justify-center text-xl md:text-3xl font-bold text-gray-950 shadow-2xl border border-silver-400/30">
                   RT
                 </div>
               </motion.div>
             </motion.div>
 
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-4 tracking-tight px-4"
-            >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-3 tracking-tight">
               <span className="text-gray-100">Riccardo </span>
               <span className="text-gradient-silver">Terzaghi</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-base sm:text-lg md:text-xl text-silver-300 mb-2 md:mb-3 font-light px-4"
-            >
+            <p className="text-sm sm:text-base md:text-lg text-silver-300 mb-2 font-light">
               Cloud Engineer & Co-Founder @ <a href="https://wesync.dev/" target="_blank" rel="noopener noreferrer" className="text-silver-200 hover:text-silver-100 underline transition-colors">Wesync</a>
-            </motion.p>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-sm sm:text-base md:text-lg text-silver-400 max-w-3xl mx-auto mb-8 md:mb-10 font-light leading-relaxed px-4"
-            >
-              Architettura Cloud, Full Stack Development, Pilotaggio Droni & Modellazione 3D
-            </motion.p>
+            </p>
 
             {/* Social Links */}
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center flex-wrap gap-3 md:gap-4 mb-8 md:mb-12 px-4"
-            >
+            <div className="flex justify-center flex-wrap gap-2 md:gap-3 mt-4 md:mt-6">
               {[
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/riccardoterzaghi', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:riccardo@example.com', label: 'Email' },
                 { icon: Github, href: 'https://github.com', label: 'GitHub' },
-              ].map((social, index) => {
-                const Icon = social.icon
+              ].map((social) => {
+                const SocialIcon = social.icon
                 return (
                   <motion.a
                     key={social.label}
                     href={social.href}
                     target={social.href.startsWith('http') ? '_blank' : undefined}
                     rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="group relative p-3 md:p-4 rounded-full glass-effect hover:border-silver-400/50 transition-all duration-300"
+                    className="group relative p-2 md:p-3 rounded-full glass-effect hover:border-silver-400/50 transition-all duration-300"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Icon size={20} className="md:w-6 md:h-6 text-silver-300 group-hover:text-silver-100 transition-colors" />
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-silver-400/0 via-silver-400/20 to-silver-400/0 opacity-0 group-hover:opacity-100"
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-                    />
+                    <SocialIcon size={18} className="md:w-5 md:h-5 text-silver-300 group-hover:text-silver-100 transition-colors" />
                   </motion.a>
                 )
               })}
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Category Filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4"
-          >
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-silver-600 to-silver-500 text-gray-950 shadow-lg shadow-silver-500/50'
-                    : 'glass-effect text-silver-300 hover:text-silver-100 hover:border-silver-400/50'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Projects Gallery */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mb-12"
-          >
-            {filteredProjects.map((project, index) => {
-              const Icon = project.icon
-              return (
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  layout
-                  className="group relative bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/50 hover:border-silver-400/50 transition-all duration-300"
-                  whileHover={{ y: -8, scale: 1.02 }}
-                >
-                  {/* Project Image */}
-                  <div className="relative h-48 md:h-56 overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full glass-effect text-xs font-medium text-silver-200 flex items-center gap-1.5">
-                      <Icon size={14} />
-                      {project.category}
-                    </div>
-
-                    {/* Play Button for Videos */}
-                    {project.videoLink && (
-                      <motion.div
-                        className="absolute inset-0 flex items-center justify-center"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                      >
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-silver-500/90 backdrop-blur-sm flex items-center justify-center">
-                          <Play size={24} className="text-gray-950 ml-1" fill="currentColor" />
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Project Info */}
-                  <div className="p-4 md:p-5">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-base md:text-lg font-bold text-gray-100 line-clamp-2 flex-1">
-                        {project.title}
-                      </h3>
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="ml-2 p-2 rounded-full bg-silver-500/10 hover:bg-silver-500/20 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink size={16} className="text-silver-300" />
-                        </a>
-                      )}
-                    </div>
-
-                    <p className="text-xs md:text-sm text-silver-400 mb-3 line-clamp-2">
-                      {project.description}
-                    </p>
-
-                    {/* Date */}
-                    <p className="text-xs text-silver-500 mb-3">
-                      {new Date(project.date).toLocaleDateString('it-IT', { 
-                        month: 'long', 
-                        year: 'numeric' 
-                      })}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags.slice(0, 3).map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="px-2 py-1 bg-silver-500/10 text-silver-300 rounded text-xs"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <span className="px-2 py-1 text-silver-400 text-xs">
-                          +{project.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Hover Glow Effect */}
+          {/* Carousel */}
+          <div className="relative flex-1 flex items-center justify-center">
+            <div className="w-full max-w-5xl mx-auto">
+              {/* Main Carousel */}
+              <div className="relative h-[500px] sm:h-[550px] md:h-[600px] flex items-center justify-center">
+                <AnimatePresence initial={false} custom={direction}>
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-silver-400/0 via-silver-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                    key={currentIndex}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: 'spring', stiffness: 300, damping: 30 },
+                      opacity: { duration: 0.2 },
+                      scale: { duration: 0.2 },
+                    }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={1}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = swipePower(offset.x, velocity.x)
+                      if (swipe < -swipeConfidenceThreshold) {
+                        paginate(1)
+                      } else if (swipe > swipeConfidenceThreshold) {
+                        paginate(-1)
+                      }
+                    }}
+                    className="absolute w-full cursor-grab active:cursor-grabbing"
+                  >
+                    <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800/50 shadow-2xl">
+                      {/* Project Image */}
+                      <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
+                        <Image
+                          src={currentProject.image}
+                          alt={currentProject.title}
+                          fill
+                          className="object-cover"
+                          priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
+                        
+                        {/* Category Badge */}
+                        <div className="absolute top-4 left-4 px-4 py-2 rounded-full glass-effect text-sm font-medium text-silver-200 flex items-center gap-2">
+                          <Icon size={18} />
+                          {currentProject.category}
+                        </div>
+
+                        {/* Play Button for Videos */}
+                        {currentProject.videoLink && (
+                          <motion.div
+                            className="absolute inset-0 flex items-center justify-center"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                          >
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-silver-500/90 backdrop-blur-sm flex items-center justify-center">
+                              <Play size={32} className="text-gray-950 ml-1" fill="currentColor" />
+                            </div>
+                          </motion.div>
+                        )}
+                      </div>
+
+                      {/* Project Info */}
+                      <div className="p-6 md:p-8">
+                        <div className="flex items-start justify-between mb-3 md:mb-4">
+                          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-100 flex-1">
+                            {currentProject.title}
+                          </h2>
+                          {currentProject.link && (
+                            <a
+                              href={currentProject.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="ml-4 p-3 rounded-full bg-silver-500/10 hover:bg-silver-500/20 transition-colors"
+                            >
+                              <ExternalLink size={20} className="text-silver-300" />
+                            </a>
+                          )}
+                        </div>
+
+                        <p className="text-base md:text-lg text-silver-400 mb-4 md:mb-6 leading-relaxed">
+                          {currentProject.description}
+                        </p>
+
+                        {/* Date */}
+                        <p className="text-sm text-silver-500 mb-4 md:mb-5">
+                          {new Date(currentProject.date).toLocaleDateString('it-IT', { 
+                            month: 'long', 
+                            year: 'numeric' 
+                          })}
+                        </p>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2">
+                          {currentProject.tags.map((tag, tagIndex) => (
+                            <motion.span
+                              key={tagIndex}
+                              className="px-3 py-1.5 bg-silver-500/10 text-silver-300 rounded-full text-sm font-medium"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: tagIndex * 0.1 }}
+                            >
+                              {tag}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation Arrows */}
+                <button
+                  onClick={() => paginate(-1)}
+                  className="absolute left-0 md:-left-16 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full glass-effect hover:border-silver-400/50 transition-all duration-300 group"
+                  aria-label="Previous project"
+                >
+                  <ChevronLeft size={24} className="text-silver-300 group-hover:text-silver-100 transition-colors" />
+                </button>
+                <button
+                  onClick={() => paginate(1)}
+                  className="absolute right-0 md:-right-16 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full glass-effect hover:border-silver-400/50 transition-all duration-300 group"
+                  aria-label="Next project"
+                >
+                  <ChevronRight size={24} className="text-silver-300 group-hover:text-silver-100 transition-colors" />
+                </button>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center gap-2 mt-6 md:mt-8">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      index === currentIndex
+                        ? 'w-8 md:w-10 h-2 bg-gradient-to-r from-silver-600 to-silver-500'
+                        : 'w-2 h-2 bg-silver-500/30 hover:bg-silver-500/50'
+                    }`}
+                    aria-label={`Go to project ${index + 1}`}
                   />
-                </motion.div>
-              )
-            })}
-          </motion.div>
+                ))}
+              </div>
+
+              {/* Project Counter */}
+              <div className="text-center mt-4 text-sm text-silver-400">
+                {currentIndex + 1} / {projects.length}
+              </div>
+            </div>
+          </div>
 
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="flex justify-center pt-4"
+            className="flex justify-center gap-4 pt-8"
           >
             <motion.a
-              href="#about"
-              className="flex flex-col items-center text-silver-400 hover:text-silver-200 transition-colors group"
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
+              href="/about"
+              className="px-6 py-3 glass-effect hover:border-silver-400/50 transition-all duration-300 rounded-full text-silver-300 hover:text-silver-100 text-sm md:text-base font-medium"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="mb-2 text-xs md:text-sm font-light tracking-wider uppercase">Scopri di più</span>
-              <ArrowDown size={20} className="md:w-6 md:h-6 group-hover:text-silver-100" />
+              Scopri di più
+            </motion.a>
+            <motion.a
+              href="/contact"
+              className="px-6 py-3 bg-gradient-to-r from-silver-600 to-silver-500 hover:from-silver-500 hover:to-silver-400 transition-all duration-300 rounded-full text-gray-950 text-sm md:text-base font-medium shadow-lg shadow-silver-500/50"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Contattami
             </motion.a>
           </motion.div>
         </div>

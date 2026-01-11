@@ -5,13 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Cloud', href: '#cloud-architecture' },
-  { name: 'Drones', href: '#drone-pilot' },
-  { name: '3D', href: '#3d-modeling' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Skills', href: '/skills' },
+  { name: 'Certifications', href: '/certifications' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 export default function Navigation() {
@@ -40,7 +39,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <motion.a
-            href="#home"
+            href="/"
             className="text-2xl font-bold text-gradient-silver tracking-tight"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

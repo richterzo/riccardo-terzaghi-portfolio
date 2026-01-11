@@ -1,14 +1,15 @@
-import HeroGallery from '@/components/HeroGallery'
+import Certifications from '@/components/Certifications'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-export default function Home() {
+export default function CertificationsPage() {
   return (
     <main className="min-h-screen bg-gray-950">
       <Navigation />
-      <HeroGallery />
+      <div className="pt-20">
+        <Certifications />
+      </div>
       <Footer />
     </main>
   )
 }
-

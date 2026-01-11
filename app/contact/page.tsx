@@ -1,14 +1,15 @@
-import HeroGallery from '@/components/HeroGallery'
+import Contact from '@/components/Contact'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-export default function Home() {
+export default function ContactPage() {
   return (
     <main className="min-h-screen bg-gray-950">
       <Navigation />
-      <HeroGallery />
+      <div className="pt-20">
+        <Contact />
+      </div>
       <Footer />
     </main>
   )
 }
-

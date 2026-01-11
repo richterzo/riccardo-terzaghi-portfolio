@@ -1,14 +1,15 @@
-import HeroGallery from '@/components/HeroGallery'
+import Experience from '@/components/Experience'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-export default function Home() {
+export default function ExperiencePage() {
   return (
     <main className="min-h-screen bg-gray-950">
       <Navigation />
-      <HeroGallery />
+      <div className="pt-20">
+        <Experience />
+      </div>
       <Footer />
     </main>
   )
 }
-
