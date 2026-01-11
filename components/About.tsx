@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { MapPin, Briefcase, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 export default function About() {
   const ref = useRef(null)
@@ -11,19 +12,19 @@ export default function About() {
 
   const skills = [
     {
-      title: 'Architettura Cloud & Full Stack',
-      description: 'Progettazione e sviluppo di soluzioni cloud scalabili e applicazioni web complete',
-      href: '#cloud-architecture',
+      title: 'Web Development',
+      description: 'Sviluppo di applicazioni web moderne con React, Next.js e TypeScript',
+      href: '/skills',
     },
     {
-      title: 'Pilota di Droni',
-      description: 'Pilotaggio professionale per riprese aeree, mappatura e ispezioni',
-      href: '#drone-pilot',
+      title: 'Cloud Architecture',
+      description: 'Architetture cloud scalabili su AWS con serverless e Kubernetes',
+      href: '/skills',
     },
     {
-      title: 'Modellazione 3D',
-      description: 'Design e modellazione tridimensionale per visualizzazione e prototipazione',
-      href: '#3d-modeling',
+      title: 'UI/UX Design',
+      description: 'Design di interfacce utente moderne, responsive e user-friendly',
+      href: '/skills',
     },
   ]
 
@@ -63,17 +64,13 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-base sm:text-lg text-silver-300 mb-4 md:mb-6 leading-relaxed font-light">
-              Cloud Architect con esperienza in architetture web, servizi cloud,
-              linguaggi frontend e backend, framework responsive, database e best
-              practices di sviluppo.
+              Web Developer Freelancer con oltre 10 anni di esperienza nella creazione di soluzioni digitali moderne e performanti. Specializzato in sviluppo full-stack, architetture cloud scalabili e user experience design.
             </p>
             <p className="text-base sm:text-lg text-silver-300 mb-3 md:mb-4 leading-relaxed font-light">
-              Co-founder di <a href="https://wesync.dev/" target="_blank" rel="noopener noreferrer" className="text-silver-200 hover:text-silver-100 underline transition-colors">Wesync</a>, azienda specializzata in soluzioni cloud e sviluppo software innovativo.
+              Lavoro con tecnologie moderne come React, Next.js, TypeScript e AWS per creare applicazioni web, landing page, piattaforme e-commerce e soluzioni SaaS su misura per ogni cliente.
             </p>
             <p className="text-base sm:text-lg text-silver-300 mb-6 md:mb-8 leading-relaxed font-light">
-              Le mie competenze si estendono su tre aree principali che combinano
-              tecnologia, creatività e innovazione per creare soluzioni complete e
-              all'avanguardia.
+              Dalla progettazione al deploy, seguo ogni fase del progetto con attenzione ai dettagli, performance e best practices per garantire risultati di qualità che superano le aspettative.
             </p>
             <div className="space-y-4">
               <motion.div
@@ -99,8 +96,43 @@ export default function About() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6"
+            className="space-y-6 md:space-y-8"
           >
+            {/* Profile Photo */}
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="relative">
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-silver-400/20 to-blue-400/20 rounded-full blur-2xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                />
+                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-silver-400/30 shadow-2xl">
+                  <Image
+                    src="/photos/profile.png"
+                    alt="Riccardo Terzaghi"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6"
+>
             {[
               { label: 'Anni Esperienza', value: '10+' },
               { label: 'Progetti Completati', value: '20+' },
@@ -121,6 +153,7 @@ export default function About() {
                 <div className="text-xs xs:text-sm text-silver-400 font-light leading-tight">{stat.label}</div>
               </motion.div>
             ))}
+            </div>
           </motion.div>
         </div>
 

@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h3 className="text-2xl font-bold mb-2 text-gradient-silver">Riccardo Terzaghi</h3>
-            <p className="text-silver-400 font-light">Cloud Engineer & Full Stack Developer</p>
+            <p className="text-silver-400 font-light">Web Developer Freelancer</p>
           </div>
 
           <div className="flex space-x-6 mb-6 md:mb-0">

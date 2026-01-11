@@ -262,7 +262,7 @@ export default function HeroGallery() {
             </h1>
 
             <p className="text-sm sm:text-base md:text-lg text-silver-300 mb-4 md:mb-6 font-light">
-              Freelancer
+              Web Developer Freelancer
             </p>
 
             {/* Social Links */}
