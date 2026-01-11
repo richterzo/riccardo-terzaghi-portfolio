@@ -18,8 +18,9 @@ interface Project {
   icon: any
 }
 
-// Progetti professionali - Siti Web
-const projects: Project[] = [
+// Tutti i progetti - Web, Droni, 3D
+const allProjects: Project[] = [
+  // Siti Web
   {
     id: 'savo-antincendi',
     title: 'Savo Antincendi',
@@ -30,6 +31,28 @@ const projects: Project[] = [
     link: 'https://www.savoantincendi.it/',
     tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Responsive Design', 'CMS'],
     icon: Globe,
+  },
+  {
+    id: 'drone-mappatura',
+    title: 'Riprese Aeree e Mappatura 3D',
+    category: 'Video Drone' as const,
+    description: 'Riprese aeree professionali di monumenti storici e mappatura 3D del territorio. Fotografia aerea ad alta risoluzione, fotogrammetria e generazione modelli 3D con post-produzione professionale.',
+    date: '2025-01',
+    image: '/photos/drone-sanluca.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=example',
+    tags: ['DJI Mavic', 'Fotogrammetria', 'Mappatura 3D', 'Post-Produzione', 'Agisoft Metashape', '4K'],
+    icon: Camera,
+  },
+  {
+    id: 'giochi-3d',
+    title: 'Giochi per Bambini Personalizzati',
+    category: 'Modello 3D' as const,
+    description: 'Creazione di giochi 3D unici partendo dai disegni dei bambini. Modellazione, stampa 3D e finitura di giocattoli personalizzati che trasformano l\'immaginazione in realtà.',
+    date: '2025-01',
+    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&q=80',
+    link: '#',
+    tags: ['Blender', '3D Modeling', '3D Printing', 'Design Personalizzato', 'Post-Processing'],
+    icon: Box,
   },
   {
     id: 'wesync',
@@ -43,6 +66,28 @@ const projects: Project[] = [
     icon: Globe,
   },
   {
+    id: 'fpv-drone',
+    title: 'FPV Drone',
+    category: 'Video Drone' as const,
+    description: 'Pilotaggio FPV (First Person View) per riprese dinamiche e acrobatiche. Voli ad alta velocità, manovre complesse e riprese immersive per video sportivi e commerciali.',
+    date: '2024-12',
+    image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
+    videoLink: 'https://www.youtube.com/watch?v=example',
+    tags: ['FPV Drone', 'Racing', 'Acrobatic Flying', 'High-Speed', 'Immersive Video'],
+    icon: Camera,
+  },
+  {
+    id: 'specchio-infinito',
+    title: 'Cornice Specchio Infinito',
+    category: 'Modello 3D' as const,
+    description: 'Design e realizzazione di cornice specchio infinito custom made. Progettazione 3D, modellazione precisa e assemblaggio con LED e specchi per effetto ottico infinito.',
+    date: '2024-12',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
+    link: '#',
+    tags: ['Blender', '3D Design', 'LED Integration', 'Custom Manufacturing', 'Optical Design'],
+    icon: Box,
+  },
+  {
     id: 'ubify',
     title: 'Ubify - Cassa Fiscale All-in-One',
     category: 'Sito Web' as const,
@@ -52,6 +97,28 @@ const projects: Project[] = [
     link: 'https://ubify.it/',
     tags: ['Next.js', 'Fiscal Compliance', 'Payment Systems', 'Hardware Integration', 'TypeScript'],
     icon: Globe,
+  },
+  {
+    id: 'drone-commerciale',
+    title: 'Riprese Aeree Commerciali',
+    category: 'Video Drone' as const,
+    description: 'Produzione video aereo per campagne pubblicitarie e documentari. Post-produzione professionale con color grading avanzato e stabilizzazione 4K.',
+    date: '2024-11',
+    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&q=80',
+    videoLink: 'https://www.youtube.com/watch?v=example',
+    tags: ['DJI Mavic', 'Premiere Pro', 'Color Grading', '4K Video', 'Stabilization'],
+    icon: Camera,
+  },
+  {
+    id: 'maniglie-custom',
+    title: 'Maniglie e Utensili Custom Made',
+    category: 'Modello 3D' as const,
+    description: 'Design e produzione di maniglie e utensili personalizzati per case. Modellazione 3D, prototipazione e stampa 3D di accessori unici su misura per interni ed esterni.',
+    date: '2024-11',
+    image: 'https://images.unsplash.com/photo-1565191999001-551c187427bb?w=800&q=80',
+    link: '#',
+    tags: ['Blender', 'CAD Design', '3D Printing', 'Custom Manufacturing', 'Product Design'],
+    icon: Box,
   },
   {
     id: 'glmspace',
@@ -114,6 +181,7 @@ export default function HeroGallery() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
+  const [selectedCategory, setSelectedCategory] = useState<string>('Tutti')
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -122,8 +190,18 @@ export default function HeroGallery() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
 
+  // Filter projects based on selected category
+  const projects = selectedCategory === 'Tutti' 
+    ? allProjects 
+    : allProjects.filter(p => p.category === selectedCategory)
+
   const cardsPerView = 3
   const totalSlides = Math.ceil(projects.length / cardsPerView)
+
+  // Reset carousel index when filter changes
+  useEffect(() => {
+    setCurrentIndex(0)
+  }, [selectedCategory])
 
   // Auto-play carousel
   useEffect(() => {
@@ -269,7 +347,7 @@ export default function HeroGallery() {
             </p>
 
             {/* Social Links */}
-            <div className="flex justify-center flex-wrap gap-2 md:gap-3">
+            <div className="flex justify-center flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
               {[
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/riccardoterzaghi', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:riccardo@example.com', label: 'Email' },
@@ -290,6 +368,28 @@ export default function HeroGallery() {
                   </motion.a>
                 )
               })}
+            </div>
+
+            {/* Category Filters */}
+            <div className="flex justify-center flex-wrap gap-2 md:gap-3">
+              {['Tutti', 'Sito Web', 'Video Drone', 'Modello 3D'].map((category) => (
+                <motion.button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-silver-600 to-silver-500 text-gray-950 shadow-lg shadow-silver-500/50'
+                      : 'glass-effect text-silver-300 hover:text-silver-100 hover:border-silver-400/50'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  {category}
+                </motion.button>
+              ))}
             </div>
           </motion.div>
 
@@ -458,7 +558,7 @@ export default function HeroGallery() {
 
               {/* Project Counter */}
               <div className="text-center mt-4 text-sm text-silver-400">
-                {currentIndex + 1} / {totalSlides} <span className="text-silver-500">({projects.length} progetti totali)</span>
+                {currentIndex + 1} / {totalSlides} <span className="text-silver-500">({projects.length} {selectedCategory !== 'Tutti' ? `progetti ${selectedCategory}` : 'progetti totali'})</span>
               </div>
             </div>
           </div>
