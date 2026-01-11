@@ -7,11 +7,27 @@ import { Code } from 'lucide-react'
 const skillCategories = [
   {
     title: 'Linguaggi',
-    skills: ['JavaScript', 'HTML5', 'CSS3', 'TypeScript', 'SQL', 'Java', 'Python'],
+    skills: [
+      'JavaScript',
+      'HTML5',
+      'CSS3',
+      'TypeScript',
+      'SQL',
+      'Java',
+      'Python',
+    ],
   },
   {
     title: 'Framework',
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'Node.js', 'REST APIs', 'Angular', 'GraphQL'],
+    skills: [
+      'React',
+      'Next.js',
+      'Tailwind CSS',
+      'Node.js',
+      'REST APIs',
+      'Angular',
+      'GraphQL',
+    ],
   },
   {
     title: 'Cloud',
@@ -94,7 +110,9 @@ export default function Skills() {
             whileHover={{ scale: 1.05 }}
           >
             <Code size={20} className="text-silver-400" />
-            <span className="text-silver-300 text-sm font-medium">Technical Skills</span>
+            <span className="text-silver-300 text-sm font-medium">
+              Technical Skills
+            </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-100">
@@ -121,9 +139,7 @@ export default function Skills() {
               {/* Category Card */}
               <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800/50 hover:border-silver-400/50 transition-all duration-300 group">
                 {/* Glow Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-silver-400/0 via-silver-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"
-                />
+                <motion.div className="absolute inset-0 bg-gradient-to-br from-silver-400/0 via-silver-400/5 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
 
                 {/* Content */}
                 <div className="relative z-10">

@@ -261,12 +261,8 @@ export default function HeroGallery() {
               <span className="text-gradient-silver">Terzaghi</span>
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-silver-300 mb-2 font-light">
-              Cloud Engineer & Co-Founder @ <a href="https://wesync.dev/" target="_blank" rel="noopener noreferrer" className="text-silver-200 hover:text-silver-100 underline transition-colors">Wesync</a>
-            </p>
-
-            <p className="text-xs sm:text-sm md:text-base text-silver-400 mb-4 md:mb-6 font-light">
-              Architettura Cloud, Full Stack Development, Pilotaggio Droni & Modellazione 3D
+            <p className="text-sm sm:text-base md:text-lg text-silver-300 mb-4 md:mb-6 font-light">
+              Freelancer
             </p>
 
             {/* Social Links */}
