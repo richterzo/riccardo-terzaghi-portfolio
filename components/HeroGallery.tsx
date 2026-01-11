@@ -22,7 +22,7 @@ const projects: Project[] = [
   {
     id: 'workout-tracker',
     title: 'App Tracking Workout',
-    category: 'Sito Web',
+    category: 'Sito Web' as const,
     description: 'Applicazione mobile-first per tracciamento allenamenti, progressi e statistiche fitness. Dashboard personalizzata con grafici e analytics.',
     date: '2026-01-11',
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
@@ -33,7 +33,7 @@ const projects: Project[] = [
   {
     id: 'wesync',
     title: 'Wesync - Piattaforma Cloud',
-    category: 'Sito Web',
+    category: 'Sito Web' as const,
     description: 'Piattaforma cloud enterprise per gestione progetti e collaborazione team. Architettura serverless AWS con Next.js.',
     date: '2024-12',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
@@ -44,7 +44,7 @@ const projects: Project[] = [
   {
     id: 'drone-bologna',
     title: 'Riprese Aeree San Luca - Bologna',
-    category: 'Video Drone',
+    category: 'Video Drone' as const,
     description: 'Riprese aeree professionali del Santuario di San Luca e panorama di Bologna. Video cinematografico 4K.',
     date: '2024-10',
     image: '/photos/drone-sanluca.jpg',
@@ -55,7 +55,7 @@ const projects: Project[] = [
   {
     id: 'architecture-viz',
     title: 'Visualizzazione Architettonica 3D',
-    category: 'Modello 3D',
+    category: 'Modello 3D' as const,
     description: 'Rendering fotorealistico per progetti architettonici residenziali e commerciali. Modellazione completa in Blender.',
     date: '2024-09',
     image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
@@ -66,7 +66,7 @@ const projects: Project[] = [
   {
     id: 'ecommerce-platform',
     title: 'E-commerce Scalabile',
-    category: 'Sito Web',
+    category: 'Sito Web' as const,
     description: 'Piattaforma e-commerce multi-vendor con gestione inventario, pagamenti e analytics in tempo reale.',
     date: '2024-08',
     image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
@@ -77,7 +77,7 @@ const projects: Project[] = [
   {
     id: 'industrial-inspection',
     title: 'Ispezione Industriale con Drone',
-    category: 'Video Drone',
+    category: 'Video Drone' as const,
     description: 'Mappatura 3D e ispezione di infrastrutture industriali con termocamera. Fotogrammetria avanzata.',
     date: '2024-07',
     image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
@@ -88,7 +88,7 @@ const projects: Project[] = [
   {
     id: 'product-design',
     title: 'Design Prodotto & Prototipazione',
-    category: 'Modello 3D',
+    category: 'Modello 3D' as const,
     description: 'Design industriale e prototipazione digitale per prodotti consumer electronics. Texturing PBR.',
     date: '2024-06',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
@@ -99,7 +99,7 @@ const projects: Project[] = [
   {
     id: 'real-estate-platform',
     title: 'Portale Immobiliare',
-    category: 'Sito Web',
+    category: 'Sito Web' as const,
     description: 'Piattaforma per agenzie immobiliari con tour virtuali 3D, mappe interattive e CRM integrato.',
     date: '2024-05',
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80',
@@ -110,7 +110,7 @@ const projects: Project[] = [
   {
     id: 'wedding-drone',
     title: 'Matrimonio Luxury - Riprese Aeree',
-    category: 'Video Drone',
+    category: 'Video Drone' as const,
     description: 'Servizio completo riprese aeree per matrimonio di lusso. Video emozionale con colonna sonora originale.',
     date: '2024-04',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
