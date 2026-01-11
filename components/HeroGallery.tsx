@@ -29,10 +29,10 @@ const projects: Project[] = [
   {
     id: 'apx',
     title: 'APX',
-    description: 'Piattaforma innovativa per gestione progetti e collaborazione team. Soluzione completa con dashboard, analytics e integrazione con tool esterni.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-    link: '#',
-    tags: ['Next.js', 'React', 'TypeScript', 'Cloud'],
+    description: 'APX è la disciplina sportiva che unisce allenamento funzionale ad alta intensità e tiro laser. Landing page per il primo evento APX 2026.',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
+    link: 'https://apx-landing.vercel.app/',
+    tags: ['Next.js', 'Framer Motion', 'Landing Page', 'Fitness'],
     year: '2025',
   },
   {
@@ -47,10 +47,10 @@ const projects: Project[] = [
   {
     id: 'savo-antincendi',
     title: 'Savo Antincendi',
-    description: 'Sito web professionale per azienda leader nei sistemi antincendio. Piattaforma completa con presentazione servizi, portfolio progetti e area riservata clienti.',
+    description: 'Sito web professionale per azienda leader nei sistemi antincendio. Vendita, noleggio, manutenzione presidi antincendio. Pronto intervento 24/7 e formazione.',
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80',
-    link: 'https://www.savoantincendi.it/',
-    tags: ['Next.js', 'React', 'TypeScript', 'CMS'],
+    link: 'https://savo-landing.vercel.app/',
+    tags: ['Next.js', 'React', 'Landing Page', 'Safety'],
     year: '2025',
   },
   {
@@ -74,10 +74,10 @@ const projects: Project[] = [
   {
     id: 'calori-scafuri',
     title: 'Calori & Scafuri',
-    description: 'Sito vetrina professionale per consulenza finanziaria e patrimoniale. Design elegante, sezioni servizi, blog e sistema di prenotazione consulenze.',
+    description: 'Consulenti finanziari e patrimoniali certificati EFPA a Bologna. Oltre 20 anni di esperienza, gestione completa del patrimonio e strategie personalizzate.',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
     link: 'https://www.caloriscafuri.it/',
-    tags: ['Next.js', 'Financial', 'Booking System'],
+    tags: ['Next.js', 'Financial', 'Booking System', 'Blog'],
     year: '2024',
   },
   {
@@ -92,10 +92,10 @@ const projects: Project[] = [
   {
     id: 'bilim-network',
     title: 'Bilim Network',
-    description: 'Piattaforma community per organizzazioni di Agroecologia. Forum interattivo, gestione contenuti, sistema di membership e networking.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    description: 'Community di organizzazioni per l\'Agroecologia dall\'Europa dell\'Est, Asia Centrale e Occidentale. Forum, news, dialoghi e networking per biodiversità e patrimonio culturale.',
+    image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80',
     link: 'https://bilim.network/',
-    tags: ['Forum System', 'Community', 'Membership'],
+    tags: ['WordPress', 'Forum', 'Community', 'Agroecology'],
     year: '2024',
   },
 ]
